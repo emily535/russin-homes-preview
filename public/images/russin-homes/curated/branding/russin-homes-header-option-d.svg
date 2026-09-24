@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1320 360" preserveAspectRatio="xMinYMid meet" role="img" aria-labelledby="title desc">
+  <title id="title">Russin Homes Option D, Horizontal Companion</title>
+  <desc id="desc">A compact roofline and R H monogram beside the Russin Homes wordmark and Custom Homes descriptor.</desc>
+  <g fill="#171512" stroke="#171512">
+    <path d="M105 114 L275 61 L445 114" fill="none" stroke-width="6" stroke-linecap="square"/>
+    <text x="215" y="247" font-family="Helvetica Neue, Arial, sans-serif" font-size="139" font-weight="300" text-anchor="middle">R</text>
+    <line x1="275" y1="132" x2="275" y2="250" stroke-width="3"/>
+    <text x="335" y="247" font-family="Helvetica Neue, Arial, sans-serif" font-size="139" font-weight="300" text-anchor="middle">H</text>
+    <line x1="480" y1="80" x2="480" y2="280" stroke-width="3"/>
+    <text x="895" y="184" font-family="Helvetica Neue, Arial, sans-serif" font-size="59" font-weight="400" letter-spacing="19" text-anchor="middle">RUSSIN HOMES</text>
+    <text x="895" y="241" font-family="Helvetica Neue, Arial, sans-serif" font-size="25" font-weight="400" letter-spacing="13" text-anchor="middle">CUSTOM HOMES</text>
+  </g>
+</svg>
