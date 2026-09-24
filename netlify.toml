@@ -1,0 +1,129 @@
+redirectsOrigin = "inline"
+headersOrigin = "inline"
+
+[functions]
+
+  [functions."*"]
+
+[[plugins]]
+origin = "default"
+package = "@netlify/plugin-nextjs"
+
+  [plugins.inputs]
+
+[build]
+publish = "/opt/build/repo/.next"
+publishOrigin = "ui"
+commandOrigin = "config"
+command = "npm run build"
+
+  [build.environment]
+  NODE_VERSION = "22"
+
+  [build.processing]
+
+    [build.processing.css]
+
+    [build.processing.html]
+
+    [build.processing.images]
+
+    [build.processing.js]
+
+  [build.services]
+
+[[headers]]
+for = "/_next/static/*"
+
+  [headers.values]
+  Cache-Control = "public, max-age=31536000, immutable"
+
+[[redirects]]
+from = "/available-homesites"
+to = "/opportunities"
+status = 301
+force = true
+
+  [redirects.query]
+
+  [redirects.conditions]
+
+  [redirects.headers]
+
+[[redirects]]
+from = "/available-homesites/"
+to = "/opportunities"
+status = 301
+force = true
+
+  [redirects.query]
+
+  [redirects.conditions]
+
+  [redirects.headers]
+
+[[redirects]]
+from = "/portfolio/prescott-lot-18"
+to = "/portfolio/6504-prescott-shore-drive"
+status = 301
+force = true
+
+  [redirects.query]
+
+  [redirects.conditions]
+
+  [redirects.headers]
+
+[[redirects]]
+from = "/portfolio/prescott-lot-18/"
+to = "/portfolio/6504-prescott-shore-drive"
+status = 301
+force = true
+
+  [redirects.query]
+
+  [redirects.conditions]
+
+  [redirects.headers]
+
+[[redirects]]
+from = "/_next/image"
+to = "/.netlify/images?url=:url&w=:width&q=:quality"
+status = 200
+force = false
+
+  [redirects.query]
+  url = ":url"
+  w = ":width"
+  q = ":quality"
+
+  [redirects.conditions]
+
+  [redirects.headers]
+
+[[redirects]]
+from = "/_ipx/*"
+to = "/.netlify/images?url=:url&w=:width&q=:quality"
+status = 200
+force = false
+
+  [redirects.query]
+  url = ":url"
+  w = ":width"
+  q = ":quality"
+
+  [redirects.conditions]
+
+  [redirects.headers]
+
+[[redirects]]
+from = "/_next/image"
+to = "/.netlify/images"
+status = 200
+force = false
+
+  [redirects.query]
+
+  [redirects.conditions]
+
+  [redirects.headers]
