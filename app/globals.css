@@ -1936,6 +1936,17 @@ fieldset.field {
 .large-placeholder {
   position: absolute;
   inset: 0;
+  align-content: center;
+  gap: 14px;
+  padding: var(--header) 22px 0;
+  background: var(--wash);
+}
+.large-placeholder b {
+  font-size: clamp(56px, 7vw, 96px);
+  line-height: 1;
+}
+.project-detail-hero.missing-media .project-hero-overlay {
+  display: none;
 }
 .project-hero.missing-media {
   background: color-mix(in srgb, var(--wash) 88%, var(--line));
