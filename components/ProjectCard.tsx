@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Project } from "@/data/site";
+import { MediaPlaceholder } from "./MediaPlaceholder";
 import { PropertyMarks } from "./PropertyMarks";
 export function ProjectCard({
   project,
@@ -24,9 +25,7 @@ export function ProjectCard({
             sizes="(max-width:700px) 100vw,(max-width:1100px) 50vw,33vw"
           />
         ) : (
-          <span className="media-placeholder">
-            <b>R | H</b>Photography coming soon
-          </span>
+          <MediaPlaceholder label={project.imageAlt} />
         )}
         <PropertyMarks project={project} />
       </Link>

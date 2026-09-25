@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { FinalCTA } from "@/components/FinalCTA";
+import { MediaPlaceholder } from "@/components/MediaPlaceholder";
 import { KeyFeatures, PropertyGallery, VideoLightbox } from "@/components/PropertyDetails";
 import { PropertyMarks } from "@/components/PropertyMarks";
 import { StructuredData } from "@/components/StructuredData";
@@ -51,7 +52,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
         {p.heroImage ? (
           <Image src={p.heroImage} alt={p.imageAlt || title} fill priority sizes="100vw" />
         ) : (
-          <div className="large-placeholder">Photography coming soon</div>
+          <MediaPlaceholder label={p.imageAlt} large />
         )}
         <div className="project-hero-overlay" />
         <PropertyMarks project={p} />
