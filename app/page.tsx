@@ -23,7 +23,7 @@ export default function HomePage() {
         <HomeHeroVideo />
         <div className="hero-shade" />
         <div className="hero-content">
-          <p className="hero-brand">Russin Homes</p>
+          <p className="eyebrow hero-brand">Russin Homes</p>
           <h1 className="stacked-headline">
             {HOME_HERO_WORDS.map((word) => (
               <span key={word}>{word}</span>

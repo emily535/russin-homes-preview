@@ -175,7 +175,7 @@ const cPrescott = [
   "Bathroom",
   "Front porch",
 ];
-const red205 = `Custom built by Russin Homes in a private community with tranquil pond views. Featuring 4 bedrooms, 4 full baths and 3,756 square feet of beautifully designed space. The owner's suite and guest suite are conveniently located on the main level with wide plank hardwoods and designer lighting spanning throughout.\n\nThe gourmet kitchen features a stained center island with barstool seating and linear pendant lighting, modern tile backsplash, custom painted ceiling-height cabinetry, and stainless steel appliances including a built-in gas range. An adjoining walk-in pantry adds tons of additional storage, all opening to the vaulted, sun-filled dining area.\n\nThe owner's suite has a tray ceiling with stained floating beams, a designer chandelier, hardwoods, and 4-panel sliding glass doors to a private covered porch. The luxurious en-suite bath features a stained dual vanity with a quartz top and floating pendant lights, a zero-entry spa-style shower with tile-to-ceiling surround, an oversized transom and bench seat, and a huge walk-in closet.\n\nThe family room offers a backlit tray ceiling, a linear fireplace with tile-to-ceiling surround, flanking painted built-in cabinets with stained shelving, and large glass sliding doors to the huge screened porch. Upstairs features an oversized game room with a built-in wet bar and beverage fridge, an open study with a built-in desk, spacious secondary en-suites, and finished storage areas.`;
+const red205 = `Custom built by Russin Homes in a private community with tranquil pond views. Featuring 4 bedrooms, 4 1/2 bathrooms and 3,756 square feet of beautifully designed space. The owner's suite and guest suite are conveniently located on the main level with wide plank hardwoods and designer lighting spanning throughout.\n\nThe gourmet kitchen features a stained center island with barstool seating and linear pendant lighting, modern tile backsplash, custom painted ceiling-height cabinetry, and stainless steel appliances including a built-in gas range. An adjoining walk-in pantry adds tons of additional storage, all opening to the vaulted, sun-filled dining area.\n\nThe owner's suite has a tray ceiling with stained floating beams, a designer chandelier, hardwoods, and 2-panel sliding glass doors to a private covered porch. The luxurious en-suite bath features a stained dual vanity with a quartz top and floating pendant lights, a zero-entry spa-style shower with tile-to-ceiling surround, an oversized transom and bench seat, and a huge walk-in closet.\n\nThe family room offers a backlit tray ceiling, a linear fireplace with tile-to-ceiling surround, flanking painted built-in cabinets with stained shelving, and large glass sliding doors to the huge screened porch. Upstairs features an oversized game room with a built-in wet bar and beverage fridge, an open study with a built-in desk, spacious secondary en-suites, and finished storage areas.`;
 const dove1123 = `Situated on a serene 1 acre lot in the established neighborhood of Silverleaf. This 4 BR, 4.5 BA, 2 car garage home has a walk-in scullery and pantry, custom cabinets throughout, a professional lighting package, and a professionally designed low voltage system including security, surround sound, and speakers located both inside and out.\n\nThis warm, inviting floor plan features a striking stone fireplace in the family room, a gourmet kitchen, and vaulted ceilings with beams throughout the screened porch, family room, and study. The primary bathroom is appointed with sconce lighting, a zero-entry dual-head shower, and a stand-alone soaking tub. This home is "sitting pretty"!`;
 const dove1121 = `For-Evergreen combines stylish design, quality finishes, and comfortable living in this inviting 4-bedroom, 4-bath home. The open-concept floor plan creates a seamless flow for everyday living and entertaining, featuring quartz countertops and a hidden pantry that adds both function and charm to the kitchen.\n\nThe first-floor primary suite offers a private retreat with a soaking tub, spacious walk-in shower, and generous closet space. A dedicated office and study provides a quiet place to work or learn, while the bonus room with a bar is ideal for entertaining family and friends.\n\nEnjoy outdoor living on the screened porch, and appreciate the added value of a sealed crawl space and independent energy testing. With versatile living spaces and a 2-car garage, the attention to detail throughout is stunning!`;
 
@@ -193,7 +193,7 @@ export const projects: Project[] = [
     priceLabel: "Offered at",
     price: "$1,000,000",
     bedrooms: "4",
-    bathrooms: "4",
+    bathrooms: "4.5",
     squareFeet: "3,756",
     acreage: "0.80 acre, pond lot",
     garage: "2-car",
@@ -580,6 +580,9 @@ export const parades = [
   {
     id: "franklin" as const,
     name: "Franklin County Parade of Homes",
+    // HOLD: hours not yet published. Replace undefined with the verified string.
+    hours: undefined as string | undefined,
+    admission: "Free admission, no ticket required.",
     weekends: [
       { label: "October 3 and 4", start: "2026-10-03", end: "2026-10-04" },
       { label: "October 10 and 11", start: "2026-10-10", end: "2026-10-11" },
@@ -589,6 +592,9 @@ export const parades = [
   {
     id: "triangle" as const,
     name: "Triangle Parade of Homes",
+    // Source: triangleparade.com/about-the-parade, accessed 2026-09-28.
+    hours: "Open 12pm to 5pm each tour day." as string | undefined,
+    admission: "Free admission, no ticket required.",
     weekends: [
       { label: "October 3 and 4", start: "2026-10-03", end: "2026-10-04" },
       { label: "October 9 through 11", start: "2026-10-09", end: "2026-10-11" },
