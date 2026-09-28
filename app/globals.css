@@ -275,12 +275,22 @@ button {
   margin: 0 0 clamp(86px, 12vh, 132px) clamp(22px, 7vw, 108px);
   animation: rise 0.9s ease-out both;
 }
+/* Typography comes from .eyebrow; only spacing and the lightened color live here. */
 .hero-brand {
-  font-family: Georgia, serif;
-  text-transform: uppercase;
-  font-size: clamp(20px, 2vw, 28px);
   margin: 0 0 22px;
   color: color-mix(in srgb, var(--gold) 48%, var(--paper));
+  /* Tight ink halo plus a soft glow keeps the 11px label at 4.5:1 or better on the
+     lightest video frame and the mobile poster. */
+  text-shadow:
+    1px 1px 2px var(--ink),
+    -1px -1px 2px var(--ink),
+    1px -1px 2px var(--ink),
+    -1px 1px 2px var(--ink),
+    0 0 3px var(--ink),
+    0 0 5px var(--ink),
+    0 0 9px rgb(from var(--ink) r g b / 0.85),
+    0 1px 14px rgb(from var(--ink) r g b / 0.7),
+    0 0 22px rgb(from var(--ink) r g b / 0.5);
 }
 .hero-content h1 {
   font-family: Georgia, serif;
@@ -439,6 +449,17 @@ button {
   color: var(--muted);
   font-size: 14px;
   min-height: 44px;
+}
+/* Reserved on every card, named or not, so rows stay aligned. */
+.project-card-copy > p.card-plan-name {
+  height: 22px;
+  min-height: 0;
+  margin: 0 0 4px;
+  overflow: hidden;
+  font-size: 14px;
+  line-height: 22px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .builder-band {
   display: grid;
@@ -723,7 +744,8 @@ button {
   color: var(--muted);
   font-size: 17px;
 }
-.about-sections article a {
+.about-sections article a,
+.inline-link {
   color: var(--ink);
   text-decoration: underline;
   text-decoration-color: var(--gold);
@@ -1190,6 +1212,10 @@ fieldset.field {
 .card-specs li:last-child {
   border: 0;
 }
+.card-specs-reserved {
+  font-size: 12px;
+  visibility: hidden;
+}
 .card-price {
   display: flex;
   justify-content: space-between;
@@ -1415,7 +1441,7 @@ fieldset.field {
   max-width: 980px;
   margin: 30px 0;
   font:
-    30px/1.35 Georgia,
+    italic 30px/1.35 Georgia,
     serif;
 }
 .testimonials cite {
@@ -1588,6 +1614,10 @@ fieldset.field {
 .tour-dates span {
   color: var(--muted);
   font-size: 11px;
+}
+.tour-visit-note {
+  margin: 4px 0 0;
+  color: var(--muted);
 }
 .entry-details {
   padding: 12px 0;
@@ -2219,7 +2249,6 @@ h2 {
 }
 
 .hero-brand {
-  font-size: clamp(32px, 3.2vw, 45px);
   opacity: 1;
 }
 .home-hero::before {
@@ -2271,9 +2300,6 @@ h2 {
     --type-h1-property: clamp(50px, 13.5vw, 60px);
     --type-h2: clamp(40px, 11vw, 52px);
     --type-h2-compact: clamp(37px, 10.3vw, 48px);
-  }
-  .hero-brand {
-    font-size: clamp(28px, 8vw, 34px);
   }
   .status-banner {
     top: 12px;

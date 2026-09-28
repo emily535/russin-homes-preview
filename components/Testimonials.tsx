@@ -7,6 +7,10 @@ export function Testimonials() {
   if (!testimonials.length) return null;
   const t = testimonials[index];
   const paragraphs = t.quote.split("\n\n");
+  // Marks wrap the stored text; the data itself stays unquoted for the Review JSON-LD.
+  // Standard multi-paragraph style: open every paragraph, close only the last.
+  const quoted = (paragraph: string, i: number) =>
+    `\u201C${paragraph}${i === paragraphs.length - 1 ? "\u201D" : ""}`;
   const selectTestimonial = (nextIndex: number) => {
     setIndex(nextIndex);
     setExpanded(false);
@@ -15,16 +19,16 @@ export function Testimonials() {
     <section className="testimonials section">
       <p className="eyebrow">Client stories</p>
       <h2>Built on trust.</h2>
-      <blockquote>{t.pullQuote}</blockquote>
+      <blockquote>{`\u201C${t.pullQuote}\u201D`}</blockquote>
       <div className="testimonial-review">
-        <p>{paragraphs[0]}</p>
+        <p>{quoted(paragraphs[0], 0)}</p>
         <div
           id={`testimonial-full-${index}`}
           className="testimonial-review-rest"
           data-expanded={expanded}
         >
-          {paragraphs.slice(1).map((paragraph) => (
-            <p key={paragraph}>{paragraph}</p>
+          {paragraphs.slice(1).map((paragraph, i) => (
+            <p key={paragraph}>{quoted(paragraph, i + 1)}</p>
           ))}
         </div>
       </div>

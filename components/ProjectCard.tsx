@@ -12,6 +12,8 @@ export function ProjectCard({
 }) {
   const href = `${project.category === "presale" ? "/opportunities" : "/portfolio"}/${project.slug}`;
   const specs = project.bedrooms && project.bathrooms && project.squareFeet;
+  // The name gets its own line only when the address is the heading.
+  const homeName = project.address ? project.planName : undefined;
   return (
     <article className="project-card">
       <Link href={href} className="project-image">
@@ -33,16 +35,24 @@ export function ProjectCard({
         <p className="eyebrow">
           {project.community} · {project.lot}
         </p>
+        {/* Fixed-height slot, kept even when empty, so named and unnamed homes align. */}
+        <p className="card-plan-name" aria-hidden={homeName ? undefined : true}>
+          {homeName}
+        </p>
         <h3>
-          <Link href={href}>{project.planName || project.address}</Link>
+          <Link href={href}>{project.address || project.planName}</Link>
         </h3>
-        {project.planName && <p className="card-address">{project.address}</p>}
-        {specs && (
+        {specs ? (
           <ul className="card-specs">
             <li>{project.bedrooms} beds</li>
             <li>{project.squareFeet} sq ft</li>
             <li>{project.bathrooms} baths</li>
           </ul>
+        ) : (
+          // Same height as the spec row, invisible, so prices still line up.
+          <div className="card-specs card-specs-reserved" aria-hidden="true">
+            &nbsp;
+          </div>
         )}
         {paradeDetails}
         {project.price && (

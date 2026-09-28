@@ -55,8 +55,11 @@ export default function ParadePage() {
           <p className="eyebrow">Recognition</p>
           <h2>On the cover.</h2>
           <p>
-            The 2026 Franklin County Parade of Homes magazine features a Russin Homes residence on
-            its cover, credited as photo courtesy of Russin Homes.
+            The 2026 Franklin County Parade of Homes magazine features{" "}
+            <Link className="inline-link" href="/portfolio/205-red-cardinal-court">
+              205 Red Cardinal Court
+            </Link>
+            , a Russin Homes custom build, on its cover, credited as photo courtesy of Russin Homes.
           </p>
         </div>
         <Image
@@ -80,12 +83,11 @@ export default function ParadePage() {
                 </div>
               ))}
             </div>
+            <p className="tour-visit-note">
+              {[parade.hours, parade.admission].filter(Boolean).join(" ")}
+            </p>
           </article>
         ))}
-        <p>
-          Hours and ticketing are set by the host Home Builders Association. Confirm details before
-          you visit.
-        </p>
       </section>
       <section className="section">
         <div className="section-heading">
