@@ -1619,6 +1619,24 @@ fieldset.field {
   margin: 4px 0 0;
   color: var(--muted);
 }
+.parade-guide {
+  margin-top: 50px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+.parade-guide ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 28px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.parade-guide a {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+}
 .entry-details {
   padding: 12px 0;
   color: var(--muted);

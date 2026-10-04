@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
-import type { Project } from "@/data/site";
+import { RENDERING_DISCLAIMER, type Project } from "@/data/site";
 export function KeyFeatures({ project }: { project: Project }) {
   const [open, setOpen] = useState(false);
   const items = project.highlights || [];
@@ -66,6 +66,7 @@ export function PropertyGallery({ project }: { project: Project }) {
           </figure>
         ))}
       </div>
+      {project.category === "presale" && <p className="gallery-note">{RENDERING_DISCLAIMER}</p>}
       {project.gallery.length > 12 && (
         <button
           className="button button-dark"
