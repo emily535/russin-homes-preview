@@ -88,6 +88,32 @@ export default function ParadePage() {
             </p>
           </article>
         ))}
+        <div className="parade-guide">
+          <h3>2026 Parade of Homes map and guide</h3>
+          <p>Franklin County publishes a full map and guide to all 52 homes on tour this year.</p>
+          <ul>
+            <li>
+              <a
+                className="inline-link"
+                href="https://franklincountyhba.com/parade-of-homes/"
+                target="_blank"
+                rel="noopener"
+              >
+                Parade map and full details
+              </a>
+            </li>
+            <li>
+              <a
+                className="inline-link"
+                href="https://issuu.com/circamagazine/docs/2026_franklin_county_parade_of_homes_guide"
+                target="_blank"
+                rel="noopener"
+              >
+                Digital Parade guide
+              </a>
+            </li>
+          </ul>
+        </div>
       </section>
       <section className="section">
         <div className="section-heading">

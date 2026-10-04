@@ -78,6 +78,16 @@ const gallery = (folder: string, address: string, captions: string[]): GalleryIm
     caption,
     alt: `${address}, ${caption.toLowerCase()}`,
   }));
+// For folders whose alt text was supplied per file. The alt doubles as the caption.
+const described = (folder: string, alts: string[]): GalleryImage[] =>
+  alts.map((alt, i) => ({
+    src: `${root}/${folder}/${String(i + 1).padStart(2, "0")}-${i ? "gallery" : "hero"}.webp`,
+    caption: alt,
+    alt,
+  }));
+// Shown beneath every presale gallery. Edit here to update all of them.
+export const RENDERING_DISCLAIMER =
+  "Renderings are for representation only. Exterior and interior colors, finishes, cabinetry, and furnishings are representative and subject to change with final construction, selection, and site conditions.";
 const hi = (rows: [string, string][]) => rows.map(([label, detail]) => ({ label, detail }));
 const c205 = [
   "Front elevation",
@@ -126,6 +136,66 @@ const c1123 = [
   "Primary shower",
   "Primary bath soaking tub",
   "Laundry room",
+];
+const a1121 = [
+  "Front elevation of 1121 Dovefield Lane, a move-in ready Russin Homes build in Silverleaf",
+  "Covered front entry with a stained wood door and board and batten detail",
+  "Great room with vaulted ceiling, exposed beams, and a wall of windows",
+  "Great room seating area open to the kitchen and staircase",
+  "Great room and staircase with built-in shelving",
+  "Kitchen island in quartz with pendant lighting and bar seating",
+  "Kitchen with custom cabinetry, wall ovens, and a vented hood",
+  "Dining room with a coffered ceiling and a wood plank table",
+  "Sitting room with built-in cabinetry off the main living area",
+  "Hidden pantry with open shelving and prep counter",
+  "First-floor primary suite with a beamed ceiling",
+  "Primary bath with a double vanity and a walk-in shower",
+  "Primary bath soaking tub and tiled shower",
+  "Bonus room with a wet bar and built-in cabinetry",
+  "Screened porch with a stone fireplace and vaulted wood ceiling",
+  "Front elevation from the side approach",
+  "View of the home from the driveway",
+  "Aerial view of the homesite and surrounding Silverleaf lots",
+];
+const a315 = [
+  "Rendering of the proposed front elevation at 315 Hidden Lake Drive",
+  "Rendering of the arched stone entry and covered porch",
+  "Rendering of the kitchen with a marble island and custom cabinetry",
+  "Rendering of the family room with a stone fireplace and sliding glass wall",
+  "Rendering of the den with built-in cabinetry and a linear fireplace",
+  "Rendering of the family room fireplace and seating area",
+  "Rendering of the two-story steel windows at dusk",
+  "Rendering of the rear elevation and lawn",
+];
+const a163 = [
+  "Rendering of the proposed front elevation at 163 Forest Bridge Road",
+  "Rendering of the front elevation from the driveway approach",
+  "Rendering of the kitchen with a full-height island and wood cabinetry",
+  "Rendering of the living room with a vaulted wood ceiling",
+  "Rendering of the covered terrace and pool beyond the main living area",
+  "Rendering of the primary bedroom with a vaulted ceiling",
+  "Rendering of the pool and rear terrace",
+  "Rendering of the covered outdoor living area",
+];
+const a7613 = [
+  "Rendering of the proposed front elevation of The Willowbrook at 7613 Thompson Mill Road",
+  "Rendering of the front elevation and entry",
+  "Rendering of the kitchen with a long island and wall ovens",
+  "Rendering of the great room with a fireplace and flanking built-ins",
+  "Rendering of the dining room with a view to the rear yard",
+  "Rendering of the primary bedroom with a wall of windows",
+  "Rendering of the primary bath with a double vanity and soaking tub",
+  "Rendering of the screened porch with a fireplace and wood ceiling",
+];
+const a7609 = [
+  "Rendering of the proposed front elevation of The Ashford at 7609 Thompson Mill Road",
+  "Rendering of the front elevation with the garage and boat bay",
+  "Rendering of the kitchen with a marble island and custom cabinetry",
+  "Rendering of the great room with a beamed ceiling and built-ins",
+  "Rendering of the dining room with a view to the rear yard",
+  "Rendering of the primary bedroom with a vaulted ceiling",
+  "Rendering of the primary bath with a freestanding tub and tiled shower",
+  "Rendering of the covered porch with a fireplace",
 ];
 const c203 = [
   "Front exterior",
@@ -281,8 +351,16 @@ export const projects: Project[] = [
     awards: [{ year: 2026, kind: "entry", paradeId: "triangle", entryName: "Sitting Pretty" }],
     listingAgent,
     heroImage: `${root}/02-available-1123-dovefield-lane/01-hero.webp`,
-    imageAlt: "1123 Dovefield Lane, front elevation",
-    gallery: gallery("02-available-1123-dovefield-lane", "1123 Dovefield Lane", c1123),
+    imageAlt:
+      "Front elevation of 1123 Dovefield Lane at dusk, a move-in ready Russin Homes build in Silverleaf",
+    gallery: [
+      ...gallery("02-available-1123-dovefield-lane", "1123 Dovefield Lane", c1123),
+      {
+        src: `${root}/02-available-1123-dovefield-lane/27-gallery.webp`,
+        caption: "Front elevation in daylight",
+        alt: "Front elevation of 1123 Dovefield Lane in daylight",
+      },
+    ],
     tourUrl:
       "https://www.zillow.com/view-imx/f01a1c62-9aed-4168-bb39-acaa18df007c?wl=true&setAttribution=mls&initialViewType=pano",
   },
@@ -322,9 +400,10 @@ export const projects: Project[] = [
     ]),
     awards: [{ year: 2026, kind: "entry", paradeId: "franklin", entryName: "For-Evergreen" }],
     listingAgent,
-    gallery: [],
-    imageAlt: "Photography coming soon for 1121 Dovefield Lane",
-    metadataImage: "/images/russin-homes/1121-dovefield-social.svg",
+    heroImage: `${root}/06-available-1121-dovefield-lane/01-hero.webp`,
+    imageAlt: a1121[0],
+    gallery: described("06-available-1121-dovefield-lane", a1121),
+    metadataImage: `${root}/06-available-1121-dovefield-lane/01-hero.webp`,
     videoUrl: "https://youtube.com/shorts/Lubwl4tObBU",
     videoTitle: "1121 Dovefield Lane video tour",
     videoPlacement: "walkthrough",
@@ -352,9 +431,9 @@ export const projects: Project[] = [
       ["Pool-Ready Homesite", "The homesite is ready for a pool."],
       ["Three-Car Garage", "A three-car garage."],
     ]),
-    heroImage: `${root}/available-homesites/hidden-lake-homesite-22.webp`,
-    imageAlt: "Proposed design for 315 Hidden Lake Drive",
-    gallery: [],
+    heroImage: `${root}/07-presale-315-hidden-lake-drive/01-hero.webp`,
+    imageAlt: a315[0],
+    gallery: described("07-presale-315-hidden-lake-drive", a315),
   },
   {
     slug: "163-forest-bridge-road",
@@ -380,9 +459,9 @@ export const projects: Project[] = [
       ["Pool-Ready Homesite", "The homesite is ready for a pool."],
       ["Three-Car Garage", "A three-car garage."],
     ]),
-    heroImage: `${root}/available-homesites/hidden-lake-75/01-front-exterior-rendering.webp`,
-    imageAlt: "Proposed front exterior rendering for 163 Forest Bridge Road",
-    gallery: [],
+    heroImage: `${root}/08-presale-163-forest-bridge-road/01-hero.webp`,
+    imageAlt: a163[0],
+    gallery: described("08-presale-163-forest-bridge-road", a163),
   },
   {
     slug: "7613-thompson-mill-road",
@@ -414,9 +493,9 @@ export const projects: Project[] = [
         "Convenient to downtown Wake Forest's restaurants, shops, breweries, and community events.",
       ],
     ]),
-    heroImage: `${root}/available-homesites/thompson-mill-homesite-1.webp`,
-    imageAlt: "Proposed design for The Willowbrook at 7613 Thompson Mill Road",
-    gallery: [],
+    heroImage: `${root}/09-presale-7613-thompson-mill-road/01-hero.webp`,
+    imageAlt: a7613[0],
+    gallery: described("09-presale-7613-thompson-mill-road", a7613),
   },
   {
     slug: "7609-thompson-mill-road",
@@ -450,9 +529,9 @@ export const projects: Project[] = [
         "Minutes from Wegmans, Harris Teeter, and downtown Wake Forest shopping and dining.",
       ],
     ]),
-    heroImage: `${root}/available-homesites/thompson-mill-homesite-2.webp`,
-    imageAlt: "Proposed design for The Ashford at 7609 Thompson Mill Road",
-    gallery: [],
+    heroImage: `${root}/10-presale-7609-thompson-mill-road/01-hero.webp`,
+    imageAlt: a7609[0],
+    gallery: described("10-presale-7609-thompson-mill-road", a7609),
   },
   {
     slug: "203-red-cardinal-court",
@@ -580,8 +659,8 @@ export const parades = [
   {
     id: "franklin" as const,
     name: "Franklin County Parade of Homes",
-    // HOLD: hours not yet published. Replace undefined with the verified string.
-    hours: undefined as string | undefined,
+    // Source: franklincountyhba.com/parade-of-homes, accessed 2026-10-04.
+    hours: "Open 12pm to 5pm each tour day." as string | undefined,
     admission: "Free admission, no ticket required.",
     weekends: [
       { label: "October 3 and 4", start: "2026-10-03", end: "2026-10-04" },

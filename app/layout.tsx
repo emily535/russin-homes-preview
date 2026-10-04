@@ -17,6 +17,14 @@ export const metadata: Metadata = {
     type: "website",
     images: [{ url: assets.hero, alt: "Russin Homes custom residence" }],
   },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon-192.png", type: "image/png", sizes: "192x192" },
+      { url: "/icon-512.png", type: "image/png", sizes: "512x512" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
+  },
   // Safety gate: indexing requires both Netlify's production context and the
   // exact public hostname. A preview can never become indexable by context alone.
   robots: isPublicProductionDeploy()
