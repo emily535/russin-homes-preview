@@ -3,7 +3,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { StructuredData } from "@/components/StructuredData";
 import { MotionSystem } from "@/components/MotionSystem";
-import { assets, site, testimonials } from "@/data/site";
+import { assets, site } from "@/data/site";
 import { isPublicProductionDeploy } from "@/data/metadata";
 import "./globals.css";
 
@@ -47,12 +47,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       sameAs: site.social.map(({ href }) => href),
       founder: { "@type": "Person", name: "Jeremy Russin", jobTitle: "Founder and Builder" },
       areaServed: site.markets.map((name) => ({ "@type": "City", name })),
-      review: testimonials.map(({ attribution, quote }) => ({
-        "@type": "Review",
-        author: { "@type": "Person", name: attribution },
-        reviewBody: quote,
-        itemReviewed: { "@id": `${site.url}/#business` },
-      })),
     },
     {
       "@context": "https://schema.org",
