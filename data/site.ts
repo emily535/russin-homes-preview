@@ -39,6 +39,8 @@ export type Project = {
   imageAlt?: string;
   gallery: GalleryImage[];
   tourUrl?: string;
+  // Hosted 360 walkthrough of a proposed design. Separate from tourUrl and videoUrl.
+  virtualTourUrl?: string;
   videoUrl?: string;
   videoTitle?: string;
   videoPlacement?: "walkthrough" | "project-tour";
@@ -462,6 +464,8 @@ export const projects: Project[] = [
     heroImage: `${root}/08-presale-163-forest-bridge-road/01-hero.webp`,
     imageAlt: a163[0],
     gallery: described("08-presale-163-forest-bridge-road", a163),
+    virtualTourUrl:
+      "https://mcmillandesign.viewin360.co/share/collection/7b3vN?logo=1&info=0&logosize=115&fs=1&vr=1&sd=1&initload=0&thumbs=1",
   },
   {
     slug: "7613-thompson-mill-road",

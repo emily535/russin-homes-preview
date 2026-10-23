@@ -66,6 +66,30 @@ export function PropertyGallery({ project }: { project: Project }) {
           </figure>
         ))}
       </div>
+      {project.virtualTourUrl && (
+        <div className="virtual-tour">
+          <h3>Virtual walkthrough</h3>
+          <p>Walk through the proposed plan in 360 before construction starts.</p>
+          <div className="virtual-tour-frame">
+            <iframe
+              src={project.virtualTourUrl}
+              title="163 Forest Bridge Road 360 virtual walkthrough, proposed design"
+              loading="lazy"
+              allow="fullscreen; xr-spatial-tracking; gyroscope; accelerometer"
+              allowFullScreen
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
+          <a
+            className="inline-link"
+            href={project.virtualTourUrl}
+            target="_blank"
+            rel="noopener"
+          >
+            Open the walkthrough in a new tab
+          </a>
+        </div>
+      )}
       {project.category === "presale" && <p className="gallery-note">{RENDERING_DISCLAIMER}</p>}
       {project.gallery.length > 12 && (
         <button
