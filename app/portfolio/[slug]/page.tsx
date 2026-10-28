@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { AwardRecognition } from "@/components/AwardRecognition";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { FinalCTA } from "@/components/FinalCTA";
 import { MediaPlaceholder } from "@/components/MediaPlaceholder";
@@ -156,6 +157,11 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
         </section>
       )}
       <KeyFeatures project={p} />
+      <AwardRecognition
+        images={p.recognitionImages}
+        eyebrow="Recognition"
+        heading="2026 Parade of Homes Bronze."
+      />
       <PropertyGallery project={p} />
       {p.tourUrl && (
         <section className="tour-band">

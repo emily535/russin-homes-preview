@@ -1227,6 +1227,23 @@ fieldset.field {
   top: 12px;
   right: 12px;
 }
+/* Award medal pinned to the bottom right of a photo. CSS only, the image stays clean. */
+.award-medal.award-corner,
+.property-marks .award-medal.award-corner {
+  position: absolute;
+  z-index: 3;
+  top: auto;
+  right: 12px;
+  bottom: 12px;
+  width: clamp(64px, 22%, 96px);
+  filter: drop-shadow(0 4px 10px rgb(from var(--ink) r g b / 0.45));
+  pointer-events: none;
+}
+.project-detail-hero .property-marks .award-medal.award-corner,
+.parade-hero .award-medal.award-corner {
+  right: clamp(16px, 4vw, 40px);
+  bottom: clamp(16px, 4vw, 40px);
+}
 .card-specs {
   display: flex;
   list-style: none;
@@ -1447,6 +1464,32 @@ fieldset.field {
   padding: 9px 0 22px;
   font-size: 13px;
 }
+/* Award photos. Stacked on mobile, side by side from 768px, always at their native 3:4. */
+.recognition-grid {
+  display: grid;
+  gap: 16px;
+  max-width: 896px;
+}
+.recognition-grid figure {
+  margin: 0;
+  min-width: 0;
+}
+.recognition-grid img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 4;
+  object-fit: contain;
+}
+.recognition-grid figcaption {
+  color: var(--muted);
+  padding: 9px 0 0;
+  font-size: 13px;
+}
+@media (min-width: 768px) {
+  .recognition-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
 .contact-pair {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1610,6 +1653,12 @@ fieldset.field {
   padding: 0 clamp(22px, 7vw, 106px) 90px;
   max-width: 900px;
 }
+/* Below this width the hero text would reach the corner medal, so the text moves up. */
+@media (max-width: 1100px) {
+  .parade-hero:has(.award-corner) > div {
+    padding-bottom: calc(clamp(64px, 22%, 96px) + clamp(16px, 4vw, 40px) + 28px);
+  }
+}
 .parade-hero h1 {
   font:
     400 var(--type-h1-page)/1 Georgia,
@@ -1626,49 +1675,16 @@ fieldset.field {
   height: auto;
   box-shadow: 0 18px 40px rgb(from var(--ink) r g b / 0.18);
 }
-.tour-dates article {
-  margin: 50px 0;
+.parade-wrap > p:not(.eyebrow) {
+  max-width: 640px;
+  margin: 18px 0 28px;
 }
-.tour-dates article > div {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
-}
-.tour-dates article > div div {
-  border-top: 2px solid var(--gold);
-  padding: 18px 0;
-}
-.tour-dates span,
-.tour-dates strong,
-.tour-dates small,
 .entry-details > * {
   display: block;
 }
-.tour-dates span {
-  color: var(--muted);
-  font-size: 11px;
-}
-.tour-visit-note {
-  margin: 4px 0 0;
-  color: var(--muted);
-}
-.parade-guide {
-  margin-top: 50px;
-  padding-top: 24px;
-  border-top: 1px solid var(--line);
-}
-.parade-guide ul {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0 28px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-.parade-guide a {
-  display: inline-flex;
-  min-height: 44px;
-  align-items: center;
+.entry-details .entry-award {
+  color: var(--ink);
+  font-weight: 700;
 }
 .entry-details {
   padding: 12px 0;
@@ -1702,9 +1718,6 @@ fieldset.field {
   }
   .contact-pair,
   .opportunity-groups {
-    grid-template-columns: 1fr;
-  }
-  .tour-dates article > div {
     grid-template-columns: 1fr;
   }
   .parade-hero {
@@ -2255,7 +2268,7 @@ h2 {
 
 .award-medal-row {
   display: grid;
-  grid-template-columns: repeat(4, 96px);
+  grid-template-columns: repeat(5, 96px);
   justify-content: space-between;
   gap: 24px;
   padding-top: 34px;
@@ -2365,9 +2378,10 @@ h2 {
     width: 48px;
   }
   .award-medal-row {
-    grid-template-columns: repeat(2, 72px);
-    justify-content: space-around;
-    row-gap: 22px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 22px 28px;
   }
   .award-medal {
     width: 72px;
