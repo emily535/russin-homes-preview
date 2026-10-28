@@ -8,6 +8,7 @@ import { FinalCTA } from "@/components/FinalCTA";
 import { MediaPlaceholder } from "@/components/MediaPlaceholder";
 import { KeyFeatures, PropertyGallery, VideoLightbox } from "@/components/PropertyDetails";
 import { PropertyMarks } from "@/components/PropertyMarks";
+import { Section, SectionStack } from "@/components/Section";
 import { StructuredData } from "@/components/StructuredData";
 import { pageMetadata } from "@/data/metadata";
 import { PRIVATE_TOURS_ENABLED, publishedProjects, site } from "@/data/site";
@@ -70,128 +71,135 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
           ]}
         />
       </div>
-      <section className="property-intro section">
-        <p className="eyebrow">{p.status}</p>
-        <h1>{title}</h1>
-        {p.planName && <p className="property-address">{p.address}</p>}
-        {p.awardLine && <p className="property-award">{p.awardLine}</p>}
-        <p>
-          {p.community} · {p.lot}
-        </p>
-        <h2>{p.intro}</h2>
-      </section>
-      <section className="glance section">
-        <div>
-          <p className="eyebrow">Home at a glance</p>
-          <h2>{p.completed ? `Completed ${p.completed}` : `${p.priceLabel} ${p.price}`}</h2>
+      <SectionStack>
+        <Section className="property-intro section">
+          <p className="eyebrow">{p.status}</p>
+          <h1>{title}</h1>
+          {p.planName && <p className="property-address">{p.address}</p>}
+          {p.awardLine && <p className="property-award">{p.awardLine}</p>}
           <p>
-            {p.address}
-            {p.city ? `, ${p.city}` : ""}
+            {p.community} · {p.lot}
           </p>
-        </div>
-        <dl>
-          {facts.map(([label, value]) => (
-            <div key={label}>
-              <dt>{label}</dt>
-              <dd>
-                {value}
-                {label === "Approx. sq ft" ? " sq ft" : ""}
-              </dd>
-            </div>
-          ))}
-        </dl>
-        {p.tags && (
-          <ul className="property-tags">
-            {p.tags.map((t) => (
-              <li key={t}>{t}</li>
-            ))}
-          </ul>
-        )}
-      </section>
-      {p.description && (
-        <section className="property-description section">
-          <p className="eyebrow">About this home</p>
-          <h2>A home designed for real life.</h2>
-          {p.description.split("\n\n").map((x) => (
-            <p key={x}>{x}</p>
-          ))}
-        </section>
-      )}
-      {(showInquiry || showTour) && (
-        <div className="section inquiry-position button-row">
-          {showInquiry && (
-            <Link
-              className="button button-dark"
-              href={`/contact?property=${encodeURIComponent(p.address || title)}`}
-            >
-              Inquire about this property
-            </Link>
-          )}
-          {showTour && (
-            <Link
-              className="button button-ghost-dark"
-              href={`/private-tour?property=${encodeURIComponent(p.address || title)}`}
-            >
-              Request a private tour
-            </Link>
-          )}
-        </div>
-      )}
-      {p.category === "presale" && (
-        <section className="presale-note section">
-          <p>
-            Illustrations show a proposed design. Confirm all details and inclusions with Jeremy.
-            Pictured pools, furnishings, finishes, and landscaping are not established as included.
-          </p>
-        </section>
-      )}
-      {(p.community === "Hidden Lake" || p.community === "Thompson Mill") && (
-        <section className="community-tagline section">
           <h2>{p.intro}</h2>
-          {p.community === "Hidden Lake" && (
-            <p>
-              Two stunning presale opportunities. One beautiful community. And the opportunity to
-              make your dream home a reality.
-            </p>
-          )}
-        </section>
-      )}
-      <KeyFeatures project={p} />
-      <AwardRecognition
-        images={p.recognitionImages}
-        eyebrow="Recognition"
-        heading="2026 Parade of Homes Bronze."
-      />
-      <PropertyGallery project={p} />
-      {p.tourUrl && (
-        <section className="tour-band">
+        </Section>
+        <Section className="glance section">
           <div>
-            <p className="eyebrow">Unbranded 3D tour</p>
-            <h2>Explore {title} virtually.</h2>
+            <p className="eyebrow">Home at a glance</p>
+            <h2>{p.completed ? `Completed ${p.completed}` : `${p.priceLabel} ${p.price}`}</h2>
+            <p>
+              {p.address}
+              {p.city ? `, ${p.city}` : ""}
+            </p>
           </div>
-          <a className="button button-light" href={p.tourUrl} target="_blank" rel="noreferrer">
-            Open 3D tour
-          </a>
-        </section>
-      )}
-      <VideoLightbox project={p} />
-      <section className="contact-pair section">
-        {p.listingAgent && (
-          <article>
-            <p className="eyebrow">Listing Contact</p>
-            <h2>{p.listingAgent.name}</h2>
-            <p>{p.listingAgent.company}</p>
-            <a href={`tel:${p.listingAgent.phoneHref}`}>{p.listingAgent.phone}</a>
-          </article>
+          <dl>
+            {facts.map(([label, value]) => (
+              <div key={label}>
+                <dt>{label}</dt>
+                <dd>
+                  {value}
+                  {label === "Approx. sq ft" ? " sq ft" : ""}
+                </dd>
+              </div>
+            ))}
+          </dl>
+          {p.tags && (
+            <ul className="property-tags">
+              {p.tags.map((t) => (
+                <li key={t}>{t}</li>
+              ))}
+            </ul>
+          )}
+        </Section>
+        {(p.description || showInquiry || showTour || p.category === "presale") && (
+          <Section className="property-description section">
+            {p.description && (
+              <>
+                <p className="eyebrow">About this home</p>
+                <h2>A home designed for real life.</h2>
+                {p.description.split("\n\n").map((x) => (
+                  <p key={x}>{x}</p>
+                ))}
+              </>
+            )}
+            {(showInquiry || showTour) && (
+              <div className="inquiry-position button-row">
+                {showInquiry && (
+                  <Link
+                    className="button button-dark"
+                    href={`/contact?property=${encodeURIComponent(p.address || title)}`}
+                  >
+                    Inquire about this property
+                  </Link>
+                )}
+                {showTour && (
+                  <Link
+                    className="button button-ghost-dark"
+                    href={`/private-tour?property=${encodeURIComponent(p.address || title)}`}
+                  >
+                    Request a private tour
+                  </Link>
+                )}
+              </div>
+            )}
+            {p.category === "presale" && (
+              <div className="presale-note">
+                <p>
+                  Illustrations show a proposed design. Confirm all details and inclusions with
+                  Jeremy. Pictured pools, furnishings, finishes, and landscaping are not established
+                  as included.
+                </p>
+              </div>
+            )}
+          </Section>
         )}
-        <article>
-          <p className="eyebrow">Builder Contact</p>
-          <h2>Jeremy Russin</h2>
-          <p>Russin Homes</p>
-          <a href={`tel:${site.phoneHref}`}>{site.phone}</a>
-        </article>
-      </section>
-      <FinalCTA />
+        {(p.community === "Hidden Lake" || p.community === "Thompson Mill") && (
+          <Section className="community-tagline section">
+            <h2>{p.intro}</h2>
+            {p.community === "Hidden Lake" && (
+              <p>
+                Two stunning presale opportunities. One beautiful community. And the opportunity to
+                make your dream home a reality.
+              </p>
+            )}
+          </Section>
+        )}
+        <KeyFeatures project={p} />
+        <AwardRecognition
+          images={p.recognitionImages}
+          eyebrow="Recognition"
+          heading="2026 Parade of Homes Bronze."
+        />
+        <PropertyGallery project={p} />
+        {p.tourUrl && (
+          <Section tone="ink" className="tour-band">
+            <div>
+              <p className="eyebrow">Unbranded 3D tour</p>
+              <h2>Explore {title} virtually.</h2>
+            </div>
+            <a className="button button-light" href={p.tourUrl} target="_blank" rel="noreferrer">
+              Open 3D tour
+            </a>
+          </Section>
+        )}
+        <VideoLightbox project={p} />
+        <Section className="contact-pair section">
+          {p.listingAgent && (
+            <article>
+              <p className="eyebrow">Listing Contact</p>
+              <h2>{p.listingAgent.name}</h2>
+              <p>{p.listingAgent.company}</p>
+              <a href={`tel:${p.listingAgent.phoneHref}`}>{p.listingAgent.phone}</a>
+            </article>
+          )}
+          <article>
+            <p className="eyebrow">Builder Contact</p>
+            <h2>Jeremy Russin</h2>
+            <p>Russin Homes</p>
+            <a href={`tel:${site.phoneHref}`}>{site.phone}</a>
+          </article>
+        </Section>
+        <FinalCTA />
+      </SectionStack>
       <StructuredData
         data={{
           "@context": "https://schema.org",

@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { testimonials } from "@/data/site";
+import { Section } from "./Section";
 export function Testimonials() {
   const [index, setIndex] = useState(0);
   const [expanded, setExpanded] = useState(false);
@@ -16,7 +17,7 @@ export function Testimonials() {
     setExpanded(false);
   };
   return (
-    <section className="testimonials section">
+    <Section className="testimonials section">
       <p className="eyebrow">Client stories</p>
       <h2>Built on trust.</h2>
       <blockquote>{`\u201C${t.pullQuote}\u201D`}</blockquote>
@@ -71,6 +72,6 @@ export function Testimonials() {
           →
         </button>
       </div>
-    </section>
+    </Section>
   );
 }

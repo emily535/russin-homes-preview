@@ -4,6 +4,7 @@ import { FinalCTA } from "@/components/FinalCTA";
 import { HomesiteFilters } from "@/components/HomesiteFilters";
 import { pageMetadata } from "@/data/metadata";
 import { assets } from "@/data/site";
+import { Section, SectionStack } from "@/components/Section";
 
 export const metadata: Metadata = pageMetadata(
   "Available Homes & Homesites | Russin Homes",
@@ -20,10 +21,12 @@ export default function HomesitesPage() {
         imageSrc={assets.exteriorOne}
         imageAlt="Russin Homes residence in Youngsville"
       />
-      <section className="section">
-        <HomesiteFilters />
-      </section>
-      <FinalCTA />
+      <SectionStack>
+        <Section className="section">
+          <HomesiteFilters />
+        </Section>
+        <FinalCTA />
+      </SectionStack>
     </main>
   );
 }

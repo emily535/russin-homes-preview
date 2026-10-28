@@ -9,6 +9,7 @@ import { PageHero } from "@/components/PageHero";
 import { ProjectCard } from "@/components/ProjectCard";
 import { pageMetadata } from "@/data/metadata";
 import { assets, locations, projects } from "@/data/site";
+import { Section, SectionStack } from "@/components/Section";
 
 type LocationSlug = keyof typeof locations;
 export function generateStaticParams() {
@@ -58,68 +59,70 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
           items={[{ label: "Home", href: "/" }, { label: location.name }]}
         />
       </div>
-      <section className="story section">
-        <div>
-          <p className="eyebrow">Building in {location.name}</p>
-          <h2>A focused approach to place and project.</h2>
-        </div>
-        <div>
-          <p>{location.detail}</p>
-          <div className="button-row">
-            <Link className="button button-dark" href="/opportunities">
-              Explore opportunities
-            </Link>
-            <Link className="text-link" href="/contact">
-              Discuss a potential build <ArrowRight aria-hidden="true" size={16} />
-            </Link>
-          </div>
-        </div>
-      </section>
-      {local.length ? (
-        <section className="section section-rule">
-          <div className="section-heading">
-            <p className="eyebrow">Projects in {location.name}</p>
-            <h2>Current and selected work.</h2>
-          </div>
-          <div className="project-grid">
-            {local.map((p) => (
-              <ProjectCard key={p.slug} project={p} />
-            ))}
-          </div>
-        </section>
-      ) : (
-        <section className="photo-break">
-          <div className="photo-break-image">
-            <Image
-              src={assets.interiorOne}
-              alt={`Interior detail from a Russin Homes project serving ${location.name}`}
-              fill
-              sizes="(max-width: 900px) 100vw, 50vw"
-            />
+      <SectionStack>
+        <Section className="story section">
+          <div>
+            <p className="eyebrow">Building in {location.name}</p>
+            <h2>A focused approach to place and project.</h2>
           </div>
           <div>
-            <p className="eyebrow">Considering {location.name}?</p>
-            <h2>Bring us the site, the questions, and the timing.</h2>
-            <Link className="text-link" href="/contact">
-              Start the conversation <ArrowRight aria-hidden="true" size={16} />
-            </Link>
+            <p>{location.detail}</p>
+            <div className="button-row">
+              <Link className="button button-dark" href="/opportunities">
+                Explore opportunities
+              </Link>
+              <Link className="text-link" href="/contact">
+                Discuss a potential build <ArrowRight aria-hidden="true" size={16} />
+              </Link>
+            </div>
           </div>
-        </section>
-      )}
-      {localHomesites.length > 0 && (
-        <section className="section section-rule">
-          <div className="section-heading">
-            <p className="eyebrow">Presale opportunities</p>
-            <h2>{location.name} homesites to discuss.</h2>
-          </div>
-          <div className="project-grid two">
-            {localHomesites.map((homesite) => (
-              <ProjectCard key={homesite.slug} project={homesite} />
-            ))}
-          </div>
-        </section>
-      )}
-      <FinalCTA />
+        </Section>
+        {local.length ? (
+          <Section className="section">
+            <div className="section-heading">
+              <p className="eyebrow">Projects in {location.name}</p>
+              <h2>Current and selected work.</h2>
+            </div>
+            <div className="project-grid">
+              {local.map((p) => (
+                <ProjectCard key={p.slug} project={p} />
+              ))}
+            </div>
+          </Section>
+        ) : (
+          <Section className="photo-break">
+            <div className="photo-break-image">
+              <Image
+                src={assets.interiorOne}
+                alt={`Interior detail from a Russin Homes project serving ${location.name}`}
+                fill
+                sizes="(max-width: 900px) 100vw, 50vw"
+              />
+            </div>
+            <div>
+              <p className="eyebrow">Considering {location.name}?</p>
+              <h2>Bring us the site, the questions, and the timing.</h2>
+              <Link className="text-link" href="/contact">
+                Start the conversation <ArrowRight aria-hidden="true" size={16} />
+              </Link>
+            </div>
+          </Section>
+        )}
+        {localHomesites.length > 0 && (
+          <Section className="section">
+            <div className="section-heading">
+              <p className="eyebrow">Presale opportunities</p>
+              <h2>{location.name} homesites to discuss.</h2>
+            </div>
+            <div className="project-grid two">
+              {localHomesites.map((homesite) => (
+                <ProjectCard key={homesite.slug} project={homesite} />
+              ))}
+            </div>
+          </Section>
+        )}
+        <FinalCTA />
+      </SectionStack>
     </main>
   );
 }

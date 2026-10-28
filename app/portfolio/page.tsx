@@ -5,6 +5,7 @@ import { FinalCTA } from "@/components/FinalCTA";
 import { pageMetadata } from "@/data/metadata";
 import { assets, portfolioProjects } from "@/data/site";
 import { Breadcrumb } from "@/components/Breadcrumb";
+import { Section, SectionStack } from "@/components/Section";
 
 export const metadata: Metadata = pageMetadata(
   "Custom Home Portfolio | Russin Homes",
@@ -24,17 +25,19 @@ export default function PortfolioPage() {
       <div className="crumb-wrap">
         <Breadcrumb visuallyHidden items={[{ label: "Home", href: "/" }, { label: "Portfolio" }]} />
       </div>
-      <section className="section">
-        <div className="section-heading">
-          <h2>Featured homes and completed work</h2>
-        </div>
-        <div className="project-grid">
-          {portfolioProjects.map((p) => (
-            <ProjectCard key={p.slug} project={p} />
-          ))}
-        </div>
-      </section>
-      <FinalCTA />
+      <SectionStack>
+        <Section className="section">
+          <div className="section-heading">
+            <h2>Featured homes and completed work</h2>
+          </div>
+          <div className="project-grid">
+            {portfolioProjects.map((p) => (
+              <ProjectCard key={p.slug} project={p} />
+            ))}
+          </div>
+        </Section>
+        <FinalCTA />
+      </SectionStack>
     </main>
   );
 }

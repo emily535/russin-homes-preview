@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { Section } from "./Section";
 
 export function FinalCTA() {
   return (
-    <section className="final-cta">
+    <Section tone="ink" className="final-cta">
       <p className="eyebrow">Start with a conversation</p>
       <h2>Tell us what you are considering.</h2>
       <p>
@@ -12,6 +13,9 @@ export function FinalCTA() {
       <Link className="button button-light" href="/contact">
         Start a Conversation <ArrowRight aria-hidden="true" size={17} />
       </Link>
-    </section>
+    </Section>
   );
 }
+
+// Always a dark band, so a SectionStack restarts the alternation after it.
+FinalCTA.tone = "ink" as const;

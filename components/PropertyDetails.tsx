@@ -2,12 +2,13 @@
 import { useState } from "react";
 import Image from "next/image";
 import { RENDERING_DISCLAIMER, type Project } from "@/data/site";
+import { Section } from "./Section";
 export function KeyFeatures({ project }: { project: Project }) {
   const [open, setOpen] = useState(false);
   const items = project.highlights || [];
   if (items.length < 3) return null;
   return (
-    <section className="section key-features">
+    <Section className="section key-features">
       <div className="section-heading">
         <p className="eyebrow">
           {project.category === "completed" ? "Project features" : "Key features"}
@@ -38,7 +39,7 @@ export function KeyFeatures({ project }: { project: Project }) {
         </button>
       )}
       {project.closingLine && <p className="closing-line">{project.closingLine}</p>}
-    </section>
+    </Section>
   );
 }
 export function PropertyGallery({ project }: { project: Project }) {
@@ -46,7 +47,7 @@ export function PropertyGallery({ project }: { project: Project }) {
   if (!project.gallery.length) return null;
   const images = open ? project.gallery : project.gallery.slice(0, 12);
   return (
-    <section className="section gallery">
+    <Section className="section gallery">
       <div className="section-heading">
         <p className="eyebrow">Gallery</p>
         <h2>A closer look.</h2>
@@ -80,12 +81,7 @@ export function PropertyGallery({ project }: { project: Project }) {
               referrerPolicy="no-referrer-when-downgrade"
             />
           </div>
-          <a
-            className="inline-link"
-            href={project.virtualTourUrl}
-            target="_blank"
-            rel="noopener"
-          >
+          <a className="inline-link" href={project.virtualTourUrl} target="_blank" rel="noopener">
             Open the walkthrough in a new tab
           </a>
         </div>
@@ -101,7 +97,7 @@ export function PropertyGallery({ project }: { project: Project }) {
           {open ? "Show fewer photos" : `View all ${project.gallery.length} photos`}
         </button>
       )}
-    </section>
+    </Section>
   );
 }
 export function VideoLightbox({ project }: { project: Project }) {
@@ -109,7 +105,7 @@ export function VideoLightbox({ project }: { project: Project }) {
   if (!project.videoUrl) return null;
   const id = project.videoUrl.split("/").pop()?.split("?")[0];
   return (
-    <section className="section video-tour">
+    <Section className="section video-tour">
       <div className="section-heading">
         <p className="eyebrow">
           {project.videoPlacement === "project-tour" ? "Project tour" : "Walkthrough"}
@@ -145,6 +141,6 @@ export function VideoLightbox({ project }: { project: Project }) {
           </div>
         </div>
       )}
-    </section>
+    </Section>
   );
 }
