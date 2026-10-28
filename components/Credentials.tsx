@@ -37,6 +37,9 @@ export function Credentials() {
         <Link href="/portfolio/205-red-cardinal-court">
           <AwardMedal year="2025" level="Silver" />
         </Link>
+        <Link href="/portfolio/1123-dovefield-lane">
+          <AwardMedal year="2026" level="Bronze" />
+        </Link>
       </div>
       <Link className="text-link" href="/parade-of-homes">
         See our Parade of Homes history

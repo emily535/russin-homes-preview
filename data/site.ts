@@ -8,6 +8,7 @@ export type Award = {
 };
 export type Highlight = { label: string; detail?: string };
 export type GalleryImage = { src: string; caption: string; alt: string };
+export type RecognitionImage = { src: string; alt: string; caption: string };
 export type Project = {
   slug: string;
   address?: string;
@@ -34,6 +35,8 @@ export type Project = {
   communityDescription?: string;
   awards?: Award[];
   awardLine?: string;
+  // Award photos shown in a Recognition block. Kept out of the gallery and the hero.
+  recognitionImages?: RecognitionImage[];
   listingAgent?: { name: string; company: string; phone: string; phoneHref: string };
   heroImage?: string;
   imageAlt?: string;
@@ -324,7 +327,7 @@ export const projects: Project[] = [
     acreage: "0.92 acre",
     garage: "2-car",
     intro:
-      "Sitting Pretty is a move-in ready Silverleaf home and a 2026 Triangle Parade of Homes entry.",
+      "Sitting Pretty is a move-in ready Silverleaf home and a 2026 Triangle Parade of Homes Bronze award winner.",
     description: dove1123,
     highlights: hi([
       ["Gourmet Kitchen and Scullery", "A gourmet kitchen with a walk-in scullery and pantry."],
@@ -348,13 +351,37 @@ export const projects: Project[] = [
         "Established Neighborhood",
         "Approximately 0.92 acre in the established Silverleaf neighborhood.",
       ],
-      ["2026 Parade of Homes", "Triangle Parade of Homes entry, Sitting Pretty."],
+      [
+        "2026 Parade of Homes",
+        "Bronze award in its price category, Triangle Parade of Homes. Entry name: Sitting Pretty.",
+      ],
     ]),
-    awards: [{ year: 2026, kind: "entry", paradeId: "triangle", entryName: "Sitting Pretty" }],
+    awards: [
+      {
+        year: 2026,
+        kind: "award",
+        level: "Bronze",
+        paradeId: "triangle",
+        entryName: "Sitting Pretty",
+      },
+    ],
+    awardLine: "2026 Triangle Parade of Homes, Bronze award in its price category.",
+    recognitionImages: [
+      {
+        src: "/images/russin-homes/parade/2026-bronze-award-sitting-pretty-exterior.webp",
+        alt: "Jeremy Russin beside the 2026 Parade of Homes Bronze Winner sign at Sitting Pretty, 1123 Dovefield Lane, Youngsville",
+        caption: "Jeremy Russin at Sitting Pretty, 1123 Dovefield Lane.",
+      },
+      {
+        src: "/images/russin-homes/parade/2026-bronze-award-plaque-and-ribbon.webp",
+        alt: "2026 Parade of Homes Bronze award plaque for Russin Homes, Sitting Pretty",
+        caption: "The 2026 Bronze award for Sitting Pretty.",
+      },
+    ],
     listingAgent,
     heroImage: `${root}/02-available-1123-dovefield-lane/01-hero.webp`,
     imageAlt:
-      "Front elevation of 1123 Dovefield Lane at dusk, a move-in ready Russin Homes build in Silverleaf",
+      "Front elevation of 1123 Dovefield Lane at dusk, a 2026 Triangle Parade of Homes Bronze award winner by Russin Homes in Silverleaf",
     gallery: [
       ...gallery("02-available-1123-dovefield-lane", "1123 Dovefield Lane", c1123),
       {
@@ -717,6 +744,29 @@ export const testimonials = [
       "We have been in our home close to 5 years and we have not encountered any major problems and we are still happy with our home design and workmanship.",
     quote:
       "We chose Russin Homes because they were a Custom Builder, we came with our own blueprints but Jeremy gave us a 2nd option that we both liked better. We liked Jeremy because he was open to suggestions of changes and he made them upon our request. We have been in our home close to 5 years and we have not encountered any major problems and we are still happy with our home design and workmanship. During the time our home was built it was the Pandemic, when materials and supplies were difficult to get. We would recommend Jeremy to anyone who has interest in buying a custom home or not.",
+  },
+  {
+    attribution: "Maggie C.",
+    pullQuote:
+      "For anyone considering a custom home, especially if you're building from out of state, we would highly recommend Jeremy and Russin Homes.",
+    quote: `We had a wonderful experience building our custom home with Jeremy Russin and Russin Homes in 2021-2022. Choosing the right builder was one of the most important decisions we made, especially since we were building our home largely from out of state before relocating. We wanted someone we could trust, who would communicate well, pay attention to the details, and ultimately bring our vision to life.\n\nJeremy made the process a great experience. Building a custom home involves a lot of decisions and moving parts, and doing so from a distance made having a reliable, responsive builder even more important. We appreciated working with someone who helped us navigate the process and made us feel confident in the decisions we were making, even when we couldn't be there in person.\n\nWhat stood out most was the overall accessibility that Jeremy and his team provided, and the finished product. Having never built a custom home before, we had tons of questions (and ideas!) along the way which were met with patience and encouragement. The process was positive from construction through closing, and we appreciated having a builder we felt comfortable working with throughout such a significant investment. We were also pleased with the support we received after moving in, which matters just as much as the building process itself.\n\nWe are very happy with our home and love having a home that reflects our family's needs and the things that were important to us to prioritize. Looking back, we are grateful we chose Russin Homes and would absolutely build with Jeremy again. For anyone considering a custom home, especially if you're building from out of state, we would highly recommend Jeremy and Russin Homes.`,
+  },
+  {
+    attribution: "Joe J.",
+    pullQuote:
+      "Being a retired General contractor myself I could easily recognize the quality of this home.",
+    quote: `My wife and I moved to Wake Forest back in 2021. We were fortunate to find and buy a custom built home by Russin Homes. Unlike many people that buy from a custom home builder the home we chose was fully completed at the time of purchase. Being a retired General contractor myself I could easily recognize the quality of this home. The attention to detail was over the top… from the conditioned crawl space, the brickwork on the foundation, the insulated garage doors, to the oversized crown moulding and beautiful tray ceilings. Jeremy has been a pleasure to work before and after the closing. Five years after the purchase he even went to bat for us and had some defective windows replaced by the manufacturer. Do NOT hesitate to buy from Jeremy at Russin Homes. His work is top shelf and he stands behind it!`,
+  },
+  {
+    attribution: "Lyndsey M.",
+    pullQuote:
+      "Even after selling us his home he has been there for us to answer questions and is always responsive!",
+    quote: `Jeremy is outstanding! Even after selling us his home he has been there for us to answer questions and is always responsive! We would definitely purchase from him again in the future.`,
+  },
+  {
+    attribution: "Russin Homes Homeowners",
+    pullQuote: "What has impressed us even more is the support you've provided after closing.",
+    quote: `Looking back on our experience, what stands out most is that we didn't actually set out to find a specific builder. We found a house that we loved, and it just happened to be a Russin home. As we've spent time in the house over the years, we've come to appreciate more and more the quality, craftsmanship, and attention to detail that went into it.\n\nOne thing we really appreciated was how organized and thoughtful you were throughout the process. The binder you put together with surveys, plots, contractor information, and other important details has been an incredibly valuable resource. The extra materials you provided from the original build were another thoughtful touch that demonstrated a level of care we wouldn't have expected but have certainly appreciated.\n\nWhat has impressed us even more is the support you've provided after closing. We've stayed in touch over the years, and you've always been willing to answer questions, offer guidance, and connect us with trusted contractors when we've wanted to tackle additional projects. That ongoing support has meant a lot to us and speaks volumes about the pride you take in your work and your commitment to homeowners.\n\nWe're also proud that our home received a Silver Award during the 2022 Walk of Homes. Since then, we've continued to see many of the homes you've built throughout the neighborhood receive recognition during subsequent Walk of Homes events, which reinforces what we've experienced firsthand: your homes are consistently well-designed, well-built, and highly regarded.\n\nSeveral years later, we remain extremely satisfied with our home and continue to be impressed by its quality. We genuinely enjoy living here and still find ourselves appreciating the details and craftsmanship that make it feel special. We're grateful for the experience we've had and wouldn't hesitate to recommend you to anyone considering a Russin home.`,
   },
 ] as const satisfies readonly Testimonial[];
 export const HOME_HERO_WORDS = ["Experience", "Personal", "Homebuilding"] as const;

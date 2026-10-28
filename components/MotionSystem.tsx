@@ -32,6 +32,12 @@ export function MotionSystem() {
       item.classList.add("reveal-item");
       item.style.setProperty("--reveal-delay", `${(index % 4) * 80}ms`);
     });
+    // Award photos stagger within their own pair, first photo first.
+    document.querySelectorAll<HTMLElement>(".recognition-grid > figure").forEach((item, index) => {
+      item.classList.add("reveal-item");
+      item.style.setProperty("--reveal-delay", `${(index % 2) * 80}ms`);
+      revealItems.push(item);
+    });
     document.documentElement.classList.add("motion-ready");
 
     const revealObserver = new IntersectionObserver(
