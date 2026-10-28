@@ -142,7 +142,9 @@ export default function HomePage() {
           </div>
         </Section>
         <Credentials />
-        <Section className="section process">
+        {/* The homepage keeps its production backgrounds here, the one exception to
+            the alternation rule: Process stays paper and Build Updates stays wash. */}
+        <Section tone="paper" className="section process">
           <div className="section-heading">
             <p className="eyebrow">The building process</p>
             <h2>Clear steps. Direct answers.</h2>
@@ -170,7 +172,7 @@ export default function HomePage() {
             ))}
           </ol>
         </Section>
-        <Section className="updates-preview">
+        <Section tone="wash" className="updates-preview">
           <div>
             <p className="eyebrow">From the field</p>
             <h2>Build Updates</h2>

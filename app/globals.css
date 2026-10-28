@@ -386,9 +386,12 @@ button {
   background: var(--ink);
   color: var(--paper);
 }
-/* Light bands paint edge to edge; the content box keeps the same width and
-   position a centered .section had. */
-.section.tone-band:not([data-tone="ink"]) {
+/* Wash bands paint edge to edge; the content box keeps the same width and
+   position a centered .section had. Paper bands match the page and stay as is. */
+.section.tone-band:where(
+    .tone-run > [data-tone="auto"]:nth-child(even of [data-tone="auto"]),
+    [data-tone="wash"]
+  ) {
   max-width: none;
   padding-inline: calc(max(0px, (100% - var(--max)) / 2) + var(--section-pad-inline));
 }
@@ -1524,7 +1527,7 @@ fieldset.field {
   border-bottom: 1px solid var(--gold);
 }
 /* Keeps the homepage testimonial text exactly where production has it. */
-.section.tone-band.testimonials {
+.tone-run > .section.testimonials {
   padding-inline: max(22px, calc((100vw - var(--max)) / 2 + 92px));
 }
 .testimonials blockquote {
