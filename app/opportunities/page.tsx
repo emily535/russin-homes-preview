@@ -6,6 +6,7 @@ import { SectionHeader } from "@/components/SectionHeader";
 import { pageMetadata } from "@/data/metadata";
 import { assets } from "@/data/site";
 import { Breadcrumb } from "@/components/Breadcrumb";
+import { Section, SectionStack } from "@/components/Section";
 export const metadata: Metadata = pageMetadata(
   "Homes for Sale & Presale Opportunities | Russin Homes",
   "Compare three move-in ready homes and four presale opportunities in Youngsville and Wake Forest.",
@@ -27,28 +28,30 @@ export default function OpportunitiesPage() {
           items={[{ label: "Home", href: "/" }, { label: "Opportunities" }]}
         />
       </div>
-      <section className="section">
-        <SectionHeader
-          eyebrow="Current Opportunities"
-          support="Homes and homesites to explore."
-          emphasis="label"
-        />
-        <HomesiteFilters />
-      </section>
-      <section className="opportunity-groups section">
-        <article>
-          <h2>Come home to Hidden Lake.</h2>
-          <p>
-            Two stunning presale opportunities. One beautiful community. And the opportunity to make
-            your dream home a reality.
-          </p>
-        </article>
-        <article>
-          <h2>Thompson Mill</h2>
-          <p>Two exceptional homes. Created with a purpose. Designed for life.</p>
-        </article>
-      </section>
-      <FinalCTA />
+      <SectionStack>
+        <Section className="section">
+          <SectionHeader
+            eyebrow="Current Opportunities"
+            support="Homes and homesites to explore."
+            emphasis="label"
+          />
+          <HomesiteFilters />
+        </Section>
+        <Section className="opportunity-groups section">
+          <article>
+            <h2>Come home to Hidden Lake.</h2>
+            <p>
+              Two stunning presale opportunities. One beautiful community. And the opportunity to
+              make your dream home a reality.
+            </p>
+          </article>
+          <article>
+            <h2>Thompson Mill</h2>
+            <p>Two exceptional homes. Created with a purpose. Designed for life.</p>
+          </article>
+        </Section>
+        <FinalCTA />
+      </SectionStack>
     </main>
   );
 }

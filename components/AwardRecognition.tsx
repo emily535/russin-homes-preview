@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { RecognitionImage } from "@/data/site";
+import { Section } from "./Section";
 
 // Award photos for one property. Renders nothing when the property has none.
 export function AwardRecognition({
@@ -15,7 +16,7 @@ export function AwardRecognition({
 }) {
   if (!images?.length) return null;
   return (
-    <section className="section award-recognition">
+    <Section className="section award-recognition">
       <div className="section-heading">
         {eyebrow && <p className="eyebrow">{eyebrow}</p>}
         <h2>{heading}</h2>
@@ -36,6 +37,6 @@ export function AwardRecognition({
           </figure>
         ))}
       </div>
-    </section>
+    </Section>
   );
 }

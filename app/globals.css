@@ -13,6 +13,9 @@
   --type-h2: clamp(40px, 4.7vw, 66px);
   --type-h2-compact: clamp(37px, 4.3vw, 59px);
   --type-support: clamp(16px, 1.4vw, 18px);
+  /* One spacing standard for every content band, taken from the homepage. */
+  --section-pad-block: clamp(72px, 9vw, 132px);
+  --section-pad-inline: clamp(22px, 6vw, 92px);
 }
 * {
   box-sizing: border-box;
@@ -361,9 +364,36 @@ button {
 }
 .section,
 .band {
-  padding: clamp(72px, 9vw, 132px) clamp(22px, 6vw, 92px);
+  padding: var(--section-pad-block) var(--section-pad-inline);
   max-width: var(--max);
   margin: 0 auto;
+}
+/* Alternating light bands, assigned by SectionStack. Only sections present in the
+   DOM are counted, and each run restarts on paper after a dark band. */
+.tone-run > [data-tone="auto"]:nth-child(odd of [data-tone="auto"]),
+[data-tone="paper"] {
+  --tone-alt: var(--wash);
+  --tone-card-border: transparent;
+  background: var(--paper);
+}
+.tone-run > [data-tone="auto"]:nth-child(even of [data-tone="auto"]),
+[data-tone="wash"] {
+  --tone-alt: var(--paper);
+  --tone-card-border: var(--line);
+  background: var(--wash);
+}
+:where([data-tone="ink"]) {
+  background: var(--ink);
+  color: var(--paper);
+}
+/* Wash bands paint edge to edge; the content box keeps the same width and
+   position a centered .section had. Paper bands match the page and stay as is. */
+.section.tone-band:where(
+    .tone-run > [data-tone="auto"]:nth-child(even of [data-tone="auto"]),
+    [data-tone="wash"]
+  ) {
+  max-width: none;
+  padding-inline: calc(max(0px, (100% - var(--max)) / 2) + var(--section-pad-inline));
 }
 .section-heading {
   max-width: 720px;
@@ -504,7 +534,6 @@ button {
 }
 .locations-band {
   padding: clamp(78px, 10vw, 140px) clamp(22px, 6vw, 92px);
-  background: var(--wash);
 }
 .locations-band > .section-heading,
 .location-list {
@@ -537,7 +566,6 @@ button {
 }
 .credentials {
   max-width: none;
-  background: var(--paper);
 }
 .credentials > * {
   max-width: var(--max);
@@ -618,7 +646,6 @@ button {
   display: grid;
   grid-template-columns: 1fr 1.2fr;
   min-height: 540px;
-  background: var(--wash);
 }
 .updates-preview > div:first-child,
 .photo-break > div:last-child {
@@ -721,15 +748,19 @@ button {
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
-.about-sections {
-  padding-top: 20px;
-}
 .about-sections article {
   display: grid;
   grid-template-columns: minmax(260px, 0.8fr) minmax(0, 1fr);
   column-gap: clamp(48px, 8vw, 110px);
   padding: clamp(62px, 8vw, 100px) 0;
   border-top: 1px solid var(--line);
+}
+.about-sections article:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+.about-sections article:last-child {
+  padding-bottom: 0;
 }
 .about-sections article .eyebrow,
 .about-sections article h2 {
@@ -812,9 +843,6 @@ button {
   font-size: 13px;
   color: var(--muted);
   margin-bottom: 36px;
-}
-.section-rule {
-  border-top: 1px solid var(--line);
 }
 .project-hero {
   min-height: 780px;
@@ -1315,9 +1343,6 @@ fieldset.field {
   margin: 0 auto;
   padding: 26px clamp(22px, 6vw, 92px) 0;
 }
-.property-intro {
-  padding-bottom: 50px;
-}
 .property-intro h1 {
   font:
     400 var(--type-h1-property)/1 Georgia,
@@ -1342,9 +1367,6 @@ fieldset.field {
   display: grid;
   grid-template-columns: 0.85fr 1.15fr;
   gap: clamp(40px, 8vw, 100px);
-  background: var(--wash);
-  max-width: none;
-  padding-inline: max(22px, calc((100vw - var(--max)) / 2 + 92px));
 }
 .glance dl {
   display: grid;
@@ -1378,22 +1400,23 @@ fieldset.field {
   border: 1px solid var(--line);
   padding: 7px 12px;
 }
-.property-description {
+.property-description > :is(p, h2) {
   max-width: 940px;
 }
 .property-description > p:not(.eyebrow) {
   font-size: 18px;
   color: var(--muted);
 }
-.inquiry-position {
-  padding-top: 0;
+/* The inquiry buttons and presale note sit in the description band. */
+.property-description > * + :is(.inquiry-position, .presale-note) {
+  margin-top: 42px;
 }
 .tour-request-page {
   padding-top: var(--header);
 }
 .tour-request-intro {
-  padding-bottom: 24px;
   max-width: 900px;
+  margin-bottom: 24px;
 }
 .tour-request-intro h1 {
   margin-bottom: 20px;
@@ -1402,9 +1425,6 @@ fieldset.field {
   color: var(--muted);
   font-size: 18px;
   max-width: 680px;
-}
-.tour-request-form-wrap {
-  padding-top: 0;
 }
 .private-tour-form {
   padding: clamp(28px, 6vw, 72px);
@@ -1418,9 +1438,6 @@ fieldset.field {
   padding-block: 30px;
   border-block: 1px solid var(--line);
   color: var(--muted);
-}
-.community-tagline {
-  padding-bottom: 0;
 }
 .feature-grid {
   display: grid;
@@ -1497,6 +1514,7 @@ fieldset.field {
 }
 .contact-pair article {
   border: 1px solid var(--line);
+  background: var(--paper);
   padding: 32px;
 }
 .contact-pair h2 {
@@ -1508,9 +1526,8 @@ fieldset.field {
   align-items: center;
   border-bottom: 1px solid var(--gold);
 }
-.testimonials {
-  background: var(--wash);
-  max-width: none;
+/* Keeps the homepage testimonial text exactly where production has it. */
+.tone-run > .section.testimonials {
   padding-inline: max(22px, calc((100vw - var(--max)) / 2 + 92px));
 }
 .testimonials blockquote {
@@ -1625,10 +1642,11 @@ fieldset.field {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 24px;
-  padding-top: 0;
 }
+/* Wash panels on a paper band; on a wash band they flip to paper with a line border. */
 .opportunity-groups article {
-  background: var(--wash);
+  background: var(--tone-alt, var(--wash));
+  border: 1px solid var(--tone-card-border, transparent);
   padding: 40px;
 }
 .opportunity-groups h2 {
@@ -2061,13 +2079,14 @@ fieldset.field {
 }
 .gallery-grid figure {
   margin: 0;
-  background: color-mix(in srgb, var(--wash) 82%, var(--paper));
   overflow: hidden;
 }
+/* Loading fill sits behind the photo only, so captions sit on the band itself. */
 .gallery-grid img {
   width: 100%;
   height: auto;
   display: block;
+  background: color-mix(in srgb, var(--wash) 82%, var(--paper));
 }
 .feature-band ul {
   columns: 2;

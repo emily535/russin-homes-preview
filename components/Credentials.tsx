@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { AwardMedal } from "./AwardMedal";
+import { Section } from "./Section";
 
 export function Credentials() {
   return (
-    <section className="band credentials">
+    <Section className="band credentials">
       <div className="section-heading">
         <p className="eyebrow">Established and accountable</p>
         <h2>Credentials and recognition.</h2>
@@ -44,6 +45,6 @@ export function Credentials() {
       <Link className="text-link" href="/parade-of-homes">
         See our Parade of Homes history
       </Link>
-    </section>
+    </Section>
   );
 }

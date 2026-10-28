@@ -25,7 +25,7 @@ export function MotionSystem() {
 
     const revealItems = Array.from(
       document.querySelectorAll<HTMLElement>(
-        "main > section, .project-grid > *, .process li, .credential-list > *",
+        "main > section, .tone-run > section, .project-grid > *, .process li, .credential-list > *",
       ),
     );
     revealItems.forEach((item, index) => {

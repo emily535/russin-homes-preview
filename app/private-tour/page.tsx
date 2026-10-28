@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PrivateTourForm } from "@/components/PrivateTourForm";
+import { Section, SectionStack } from "@/components/Section";
 import { pageMetadata } from "@/data/metadata";
 import { PRIVATE_TOURS_ENABLED, publishedProjects } from "@/data/site";
 
@@ -21,17 +22,19 @@ export default async function PrivateTourPage({
   const propertyName = property?.address || requested || "Russin Homes property";
   return (
     <main className="tour-request-page">
-      <section className="tour-request-intro section">
-        <p className="eyebrow">Private tours</p>
-        <h1>Request a private tour.</h1>
-        <p>
-          Tell us what works for you. Jeremy personally follows up to discuss the property and
-          arrange the next step.
-        </p>
-      </section>
-      <section className="section tour-request-form-wrap">
-        <PrivateTourForm property={propertyName} />
-      </section>
+      <SectionStack>
+        <Section className="section tour-request">
+          <div className="tour-request-intro">
+            <p className="eyebrow">Private tours</p>
+            <h1>Request a private tour.</h1>
+            <p>
+              Tell us what works for you. Jeremy personally follows up to discuss the property and
+              arrange the next step.
+            </p>
+          </div>
+          <PrivateTourForm property={propertyName} />
+        </Section>
+      </SectionStack>
     </main>
   );
 }
