@@ -41,9 +41,17 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       legalName: site.legalName,
       url: site.url,
       "@id": `${site.url}/#business`,
-      telephone: site.phone,
+      telephone: `+1-${site.phone}`,
       email: site.email,
       logo: `${site.url}${assets.logo}`,
+      image: `${site.url}${assets.hero}`,
+      // Service-area business: locality only, never a street address.
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Youngsville",
+        addressRegion: "NC",
+        addressCountry: "US",
+      },
       sameAs: site.social.map(({ href }) => href),
       founder: { "@type": "Person", name: "Jeremy Russin", jobTitle: "Founder and Builder" },
       areaServed: site.markets.map((name) => ({ "@type": "City", name })),

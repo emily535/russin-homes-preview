@@ -80,12 +80,7 @@ export function PropertyGallery({ project }: { project: Project }) {
               referrerPolicy="no-referrer-when-downgrade"
             />
           </div>
-          <a
-            className="inline-link"
-            href={project.virtualTourUrl}
-            target="_blank"
-            rel="noopener"
-          >
+          <a className="inline-link" href={project.virtualTourUrl} target="_blank" rel="noopener">
             Open the walkthrough in a new tab
           </a>
         </div>
@@ -109,7 +104,7 @@ export function VideoLightbox({ project }: { project: Project }) {
   if (!project.videoUrl) return null;
   const id = project.videoUrl.split("/").pop()?.split("?")[0];
   return (
-    <section className="section video-tour">
+    <section className="section video-tour" id="walkthrough">
       <div className="section-heading">
         <p className="eyebrow">
           {project.videoPlacement === "project-tour" ? "Project tour" : "Walkthrough"}

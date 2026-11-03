@@ -1,14 +1,21 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PrivateTourForm } from "@/components/PrivateTourForm";
-import { pageMetadata } from "@/data/metadata";
+import { isPublicProductionDeploy, pageMetadata } from "@/data/metadata";
 import { PRIVATE_TOURS_ENABLED, publishedProjects } from "@/data/site";
 
-export const metadata: Metadata = pageMetadata(
-  "Request a Private Tour | Russin Homes",
-  "Request a private tour of a Russin Homes property with Jeremy Russin.",
-  "/private-tour",
-);
+export const metadata: Metadata = {
+  ...pageMetadata(
+    "Request a Private Tour | Russin Homes",
+    "Request a private tour of a Russin Homes property with Jeremy Russin.",
+    "/private-tour",
+  ),
+  // A form page: kept out of search, but its links to property pages are followed.
+  // Previews stay noindex, nofollow through the gate in data/metadata.ts.
+  robots: isPublicProductionDeploy()
+    ? { index: false, follow: true }
+    : { index: false, follow: false, noarchive: true },
+};
 
 export default async function PrivateTourPage({
   searchParams,

@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { ContactForm } from "@/components/ContactForm";
 import { pageMetadata } from "@/data/metadata";
-import { site } from "@/data/site";
+import Link from "next/link";
+import { PRIVATE_TOURS_ENABLED, site } from "@/data/site";
 import { Breadcrumb } from "@/components/Breadcrumb";
 
 export const metadata: Metadata = pageMetadata(
@@ -21,6 +22,25 @@ export default function ContactPage() {
             Whether you have a specific Russin Homes property in mind or are exploring a custom-home
             project, tell Jeremy what you are considering. Include the location, your preferred
             timing, and any questions you would like to discuss.
+          </p>
+          <p>
+            Helpful details to include: the home or homesite you are asking about, whether you
+            already own land, your timeline, and the best way to reach you.
+          </p>
+          <p>
+            Want to see a finished home first? Three move-in ready Russin Homes in Youngsville
+            {PRIVATE_TOURS_ENABLED ? (
+              <>
+                {" "}
+                are{" "}
+                <Link className="inline-link" href="/private-tour">
+                  open for private tours
+                </Link>
+                .
+              </>
+            ) : (
+              "."
+            )}
           </p>
           <a href={`tel:${site.phoneHref}`} className="phone-link">
             {site.phone}
