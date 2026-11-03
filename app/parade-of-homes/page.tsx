@@ -10,7 +10,7 @@ import { pageMetadata } from "@/data/metadata";
 import { PRIVATE_TOURS_ENABLED, parades, projects, site } from "@/data/site";
 export const metadata: Metadata = pageMetadata(
   "Russin Homes at the 2026 Parade of Homes | Bronze Award, Youngsville NC",
-  "Russin Homes entered two homes in the 2026 Parade of Homes. 1123 Dovefield Lane earned a Bronze award in the Triangle Parade. Both homes are available for private tours with builder Jeremy Russin.",
+  "Russin Homes' 2026 Parade of Homes entries. 1123 Dovefield Lane won Bronze in Category 18. Both homes are open for private tours with builder Jeremy Russin.",
   "/parade-of-homes",
 );
 export default function ParadePage() {
@@ -56,8 +56,8 @@ export default function ParadePage() {
           <h1>Recognized again in 2026.</h1>
           <p>
             Two Russin Homes entries in the 2026 Parade of Homes. Sitting Pretty at 1123 Dovefield
-            Lane earned a Bronze award in the Triangle Parade of Homes, our fifth year of Parade
-            recognition.
+            Lane earned a Bronze award in Category 18, $960,000 to $1,100,000, our fifth year of
+            Parade recognition.
           </p>
         </div>
       </section>
@@ -122,9 +122,10 @@ export default function ParadePage() {
                     <div className="entry-details">
                       <strong>{award?.entryName}</strong>
                       <span>{parade.name}</span>
-                      {/* 2026 Parade awards are given within a price category. */}
                       {won?.level && (
-                        <span className="entry-award">{won.level} award, price category</span>
+                        <span className="entry-award">
+                          {won.level} award{won.category ? `, ${won.category}` : ""}
+                        </span>
                       )}
                       <a
                         href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${p.address}, ${p.city}`)}`}

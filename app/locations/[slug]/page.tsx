@@ -65,6 +65,9 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
         </div>
         <div>
           <p>{location.detail}</p>
+          {location.body.map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
+          ))}
           <div className="button-row">
             <Link className="button button-dark" href="/opportunities">
               Explore opportunities

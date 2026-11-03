@@ -11,6 +11,18 @@ import { PropertyMarks } from "@/components/PropertyMarks";
 import { StructuredData } from "@/components/StructuredData";
 import { pageMetadata } from "@/data/metadata";
 import { PRIVATE_TOURS_ENABLED, publishedProjects, site } from "@/data/site";
+// "Youngsville, NC 27596" -> structured PostalAddress. Without a city, no locality is guessed.
+function residenceAddress(street: string | undefined, city: string | undefined) {
+  const match = city?.match(/^([^,]+),\s*([A-Z]{2})\s*(\d{5})?/);
+  return {
+    "@type": "PostalAddress",
+    ...(street ? { streetAddress: street } : {}),
+    ...(match ? { addressLocality: match[1].trim() } : {}),
+    addressRegion: match?.[2] || "NC",
+    ...(match?.[3] ? { postalCode: match[3] } : {}),
+    addressCountry: "US",
+  };
+}
 export function generateStaticParams() {
   return publishedProjects.map(({ slug }) => ({ slug }));
 }
@@ -29,7 +41,7 @@ export async function generateMetadata({
   const description =
     p.category === "presale"
       ? `Presale opportunity at ${p.address} in ${(p.city || "").split(",")[0]}, North Carolina. Talk with builder Jeremy Russin about plans, pricing, and availability.`
-      : p.intro;
+      : p.metaDescription || p.intro;
   const basePath = p.category === "presale" ? "/opportunities" : "/portfolio";
   return pageMetadata(title, description, `${basePath}/${slug}`, p.metadataImage || p.heroImage);
 }
@@ -197,8 +209,8 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
           "@context": "https://schema.org",
           "@type": "SingleFamilyResidence",
           name: title,
-          address: p.address,
-          description: p.intro,
+          address: residenceAddress(p.address, p.city),
+          description: p.metaDescription || p.intro,
           url: `${site.url}${p.category === "presale" ? "/opportunities" : "/portfolio"}/${p.slug}`,
         }}
       />

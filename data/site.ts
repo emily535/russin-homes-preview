@@ -5,6 +5,8 @@ export type Award = {
   level?: "Gold" | "Silver" | "Bronze";
   paradeId?: "franklin" | "triangle";
   entryName?: string;
+  // Award category as printed on the plaque, e.g. "Category 18".
+  category?: string;
 };
 export type Highlight = { label: string; detail?: string };
 export type GalleryImage = { src: string; caption: string; alt: string };
@@ -29,6 +31,8 @@ export type Project = {
   tags?: string[];
   completed?: string;
   description?: string;
+  // Search-result description. Falls back to intro when not set.
+  metaDescription?: string;
   intro: string;
   highlights?: Highlight[];
   closingLine?: string;
@@ -327,7 +331,7 @@ export const projects: Project[] = [
     acreage: "0.92 acre",
     garage: "2-car",
     intro:
-      "Sitting Pretty is a move-in ready Silverleaf home and a 2026 Triangle Parade of Homes Bronze award winner.",
+      "Sitting Pretty is a move-in ready Silverleaf home and a 2026 Parade of Homes Bronze award winner in Category 18, $960,000 to $1,100,000.",
     description: dove1123,
     highlights: hi([
       ["Gourmet Kitchen and Scullery", "A gourmet kitchen with a walk-in scullery and pantry."],
@@ -353,7 +357,7 @@ export const projects: Project[] = [
       ],
       [
         "2026 Parade of Homes",
-        "Bronze award in its price category, Triangle Parade of Homes. Entry name: Sitting Pretty.",
+        "Bronze award, Category 18 ($960,000 to $1,100,000), Triangle Parade of Homes. Entry name: Sitting Pretty.",
       ],
     ]),
     awards: [
@@ -363,9 +367,10 @@ export const projects: Project[] = [
         level: "Bronze",
         paradeId: "triangle",
         entryName: "Sitting Pretty",
+        category: "Category 18",
       },
     ],
-    awardLine: "2026 Triangle Parade of Homes, Bronze award in its price category.",
+    awardLine: "2026 Parade of Homes, Bronze award, Category 18 ($960,000 to $1,100,000).",
     recognitionImages: [
       {
         src: "/images/russin-homes/parade/2026-bronze-award-sitting-pretty-exterior.webp",
@@ -578,6 +583,10 @@ export const projects: Project[] = [
     squareFeet: "3,890",
     acreage: "0.67 acre",
     intro: "A completed Russin Homes residence in East Woods of Patterson, Youngsville.",
+    metaDescription:
+      "203 Red Cardinal Court, a 2024 Parade of Homes Bronze winner in East Woods of Patterson, Youngsville. 4 beds, 3,890 sq ft, exposed wood beams throughout.",
+    description:
+      "203 Red Cardinal Court was completed in September 2024 in East Woods of Patterson, Youngsville, and won a Bronze award at the 2024 Parade of Homes. It has 4 bedrooms, 4 baths, and about 3,890 square feet on 0.67 acre.\n\nExposed wood beams carry through the great room, dining area, and kitchen. A linear fireplace with built-in floating shelves anchors the living space, and the kitchen has an oversized island and a walk-in pantry. The primary bath has a frameless glass shower and a freestanding tub. An open staircase with a black metal railing leads upstairs, and the screened porch has a wood-plank ceiling and an outdoor fireplace.",
     highlights: hi([
       ["Exposed Wood Beams", "Exposed wood beams in the great room, dining area, and kitchen."],
       ["Linear Fireplace", "A linear fireplace with built-in floating shelves."],
@@ -609,6 +618,10 @@ export const projects: Project[] = [
     squareFeet: "3,150",
     acreage: "0.74 acre",
     intro: "A completed Russin Homes residence in East Woods of Patterson, Youngsville.",
+    metaDescription:
+      "108 Red Cardinal Court, a 2022 Parade of Homes Silver winner in East Woods of Patterson, Youngsville. 4 beds, 3,150 sq ft, vaulted wood-plank ceilings.",
+    description:
+      "108 Red Cardinal Court was completed in July 2022 in East Woods of Patterson, Youngsville, and won a Silver award at the 2022 Parade of Homes. It has 4 bedrooms, 3 baths, and about 3,150 square feet on 0.74 acre.\n\nA vaulted wood-plank ceiling with beams spans the kitchen and great room, and natural light fills the main living space. The contemporary kitchen is built around a large custom island, with a kitchen bar and a wine fridge. An open staircase with a metal railing leads upstairs, and the screened porch has a wood-plank ceiling.",
     highlights: hi([
       [
         "Vaulted, Beamed Ceiling",
@@ -642,6 +655,10 @@ export const projects: Project[] = [
     squareFeet: "3,519",
     acreage: "0.97 acre",
     intro: "A completed Russin Homes residence in Prescott.",
+    metaDescription:
+      "6504 Prescott Shore Drive, a completed Russin Homes custom build in Prescott. 4 beds, 4 baths, 3,519 sq ft on 0.97 acre with exposed cedar beams.",
+    description:
+      "6504 Prescott Shore Drive is a completed Russin Homes custom build in Prescott, finished in January 2022. It has 4 bedrooms, 4 baths, and about 3,519 square feet on 0.97 acre.\n\nExposed cedar beams run through the great room and kitchen, and the great room fireplace is framed by built-in shelving. The kitchen has a farmhouse sink, and sliding doors open to the covered porch. The primary bedroom has a wood tray ceiling, and the primary bath has a freestanding tub and a glass shower. Wainscoting runs through the foyer and dining room.\n\nOutside, a screened porch and a covered deck give the home two outdoor living spaces.",
     highlights: hi([
       ["Exposed Cedar Beams", "Exposed cedar beams in the great room and kitchen."],
       ["Fireplace", "A fireplace with built-in shelving."],
@@ -790,6 +807,7 @@ export const locations = {
     copy: "Russin Homes builds in established communities and on selected homesites across Youngsville.",
     detail:
       "Current Youngsville work includes three available homes, two Hidden Lake presale opportunities, and completed residences that show the range of our work.",
+    body: [],
     image: projects[7].heroImage!,
   },
   "wake-forest": {
@@ -799,6 +817,11 @@ export const locations = {
     copy: "Russin Homes brings personal oversight to selected custom builds and presale opportunities around Wake Forest.",
     detail:
       "Two Thompson Mill presale homesites are currently offered with proposed plans. Prescott Lot 18 is one completed example of our nearby work.",
+    body: [
+      "Russin Homes has two presale homesites on Thompson Mill Road in Wake Forest, Lot 1 and Lot 2. Each is about 1.1 acres, pool-ready, with no HOA. The Willowbrook at 7613 Thompson Mill Road and The Ashford at 7609 Thompson Mill Road both start from a McMillan Design floor plan, with current plans from $1,300,000, and you are welcome to bring your own plan instead.",
+      "The Willowbrook puts the primary suite, a study, and a guest suite on the first floor, with a walk-in pantry and scullery off the kitchen. The Ashford adds a three-car garage with one oversized 12 by 25 foot bay for a boat.",
+      'Russin Homes builds in Wake Forest the same way it builds everywhere: Jeremy Russin is directly involved in every home. One Wake Forest homeowner, a retired general contractor, wrote in his review: "Being a retired General contractor myself I could easily recognize the quality of this home."',
+    ],
     image: projects[9].heroImage!,
   },
   raleigh: {
@@ -808,6 +831,11 @@ export const locations = {
     copy: "Russin Homes considers Raleigh projects where the homesite, goals, and timing align.",
     detail:
       "No Raleigh inventory is currently advertised. Start with a direct conversation about your site and plans.",
+    body: [
+      "Russin Homes has been building new homes across the Triangle since 2004, and Raleigh is part of that footprint. No Raleigh inventory is advertised right now, so a Raleigh build usually starts with a homesite you own or a lot you are considering.",
+      "Bring the address, your goals, and your timing. Jeremy can talk through whether the site fits, what a custom plan could look like, and how a build would be scheduled. You can start from your own plan or from one of the McMillan Design plans Russin Homes uses on current presales.",
+      "Russin Homes is a licensed North Carolina general contractor, License #80218, with Parade of Homes recognition across five separate years.",
+    ],
     image: projects[8].heroImage!,
   },
 } as const;
@@ -822,7 +850,7 @@ export const routes = [
   "/locations/wake-forest",
   "/locations/raleigh",
   "/build-updates",
-  ...(PRIVATE_TOURS_ENABLED ? ["/private-tour"] : []),
+  // /private-tour is noindex, so it stays out of the sitemap.
   ...publishedProjects.map(
     (p) => `${p.category === "presale" ? "/opportunities" : "/portfolio"}/${p.slug}`,
   ),

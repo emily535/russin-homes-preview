@@ -1023,6 +1023,10 @@ button {
 .contact-intro .small {
   font-size: 13px;
 }
+/* Inline links sit on the dark contact panel here, so they take the paper color. */
+.contact-intro .inline-link {
+  color: var(--paper);
+}
 .contact-form {
   padding: clamp(55px, 7vw, 100px);
   display: grid;
