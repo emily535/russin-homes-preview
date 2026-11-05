@@ -65,6 +65,17 @@ export default function HomePage() {
               <ProjectCard project={project} key={project.slug} />
             ))}
         </div>
+        <div className="section-heading home-presale-heading">
+          <p className="eyebrow">Presale homesites</p>
+          <h3>Build on a Russin Homes homesite in Youngsville or Wake Forest.</h3>
+        </div>
+        <div className="project-grid">
+          {projects
+            .filter((project) => project.category === "presale" && project.published !== false)
+            .map((project) => (
+              <ProjectCard project={project} key={project.slug} />
+            ))}
+        </div>
       </section>
       <Testimonials />
       <section className="builder-band">

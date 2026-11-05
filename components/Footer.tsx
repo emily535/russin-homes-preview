@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Facebook, Instagram, Youtube } from "lucide-react";
-import { site } from "@/data/site";
+import { site, opportunities, locations, projectHref, projectLinkLabel } from "@/data/site";
 
 export function Footer() {
   const socialIcons = { Instagram, Facebook, YouTube: Youtube };
@@ -22,6 +22,22 @@ export function Footer() {
           <Link href="/opportunities">Opportunities</Link>
           <Link href="/parade-of-homes">Parade of Homes</Link>
           <Link href="/build-updates">Build Updates</Link>
+          <h2 className="footer-subhead">Where We Build</h2>
+          {Object.entries(locations).map(([slug, loc]) => (
+            <Link key={slug} href={`/locations/${slug}`}>
+              Custom homes in {loc.name}
+            </Link>
+          ))}
+        </div>
+        <div>
+          <h2>Available Homes</h2>
+          {opportunities
+            .filter((p) => p.published !== false)
+            .map((p) => (
+              <Link key={p.slug} href={projectHref(p)}>
+                {projectLinkLabel(p)}
+              </Link>
+            ))}
         </div>
         <div>
           <h2>Connect</h2>

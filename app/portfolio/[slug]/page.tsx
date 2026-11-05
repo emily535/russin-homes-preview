@@ -10,7 +10,8 @@ import { KeyFeatures, PropertyGallery, VideoLightbox } from "@/components/Proper
 import { PropertyMarks } from "@/components/PropertyMarks";
 import { StructuredData } from "@/components/StructuredData";
 import { pageMetadata } from "@/data/metadata";
-import { PRIVATE_TOURS_ENABLED, publishedProjects, site } from "@/data/site";
+import { ProjectCard } from "@/components/ProjectCard";
+import { PRIVATE_TOURS_ENABLED, opportunities, publishedProjects, site } from "@/data/site";
 // "Youngsville, NC 27596" -> structured PostalAddress. Without a city, no locality is guessed.
 function residenceAddress(street: string | undefined, city: string | undefined) {
   const match = city?.match(/^([^,]+),\s*([A-Z]{2})\s*(\d{5})?/);
@@ -203,6 +204,29 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
           <a href={`tel:${site.phoneHref}`}>{site.phone}</a>
         </article>
       </section>
+      {(() => {
+        // Other homes and homesites a buyer can act on now, same community first, then same town.
+        const town = p.city?.split(",")[0];
+        const rank = (o: typeof p) =>
+          o.community === p.community ? 0 : o.city?.split(",")[0] === town ? 1 : 2;
+        const related = opportunities
+          .filter((o) => o.slug !== p.slug && o.published !== false)
+          .sort((a, b) => rank(a) - rank(b))
+          .slice(0, 3);
+        return related.length ? (
+          <section className="section section-rule">
+            <div className="section-heading">
+              <p className="eyebrow">Also available from Russin Homes</p>
+              <h2>More homes and homesites to consider.</h2>
+            </div>
+            <div className="project-grid">
+              {related.map((o) => (
+                <ProjectCard key={o.slug} project={o} />
+              ))}
+            </div>
+          </section>
+        ) : null;
+      })()}
       <FinalCTA />
       <StructuredData
         data={{

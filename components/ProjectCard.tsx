@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { Project } from "@/data/site";
+import { projectHref, type Project } from "@/data/site";
 import { MediaPlaceholder } from "./MediaPlaceholder";
 import { PropertyMarks } from "./PropertyMarks";
 export function ProjectCard({
@@ -10,7 +10,7 @@ export function ProjectCard({
   project: Project;
   paradeDetails?: React.ReactNode;
 }) {
-  const href = `${project.category === "presale" ? "/opportunities" : "/portfolio"}/${project.slug}`;
+  const href = projectHref(project);
   const specs = project.bedrooms && project.bathrooms && project.squareFeet;
   // The name gets its own line only when the address is the heading.
   const homeName = project.address ? project.planName : undefined;

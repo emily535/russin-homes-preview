@@ -699,6 +699,15 @@ export const projects: Project[] = [
 export const opportunities = projects.filter(
   (p) => p.category === "available" || p.category === "presale",
 );
+// One source of truth for where a home's page lives, so every internal link agrees.
+export const projectHref = (p: Project) =>
+  `${p.category === "presale" ? "/opportunities" : "/portfolio"}/${p.slug}`;
+// "7613 Thompson Mill Road, Wake Forest" style label for text links.
+export const projectLinkLabel = (p: Project) => {
+  const town = p.city?.split(",")[0];
+  const name = p.address || p.planName || p.community;
+  return town ? `${name}, ${town}` : name;
+};
 export const portfolioProjects = projects.filter(
   (p) => p.category === "completed" && p.published !== false,
 );

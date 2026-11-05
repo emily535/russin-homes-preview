@@ -109,6 +109,22 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
           </div>
         </section>
       )}
+      {localHomesites.length === 0 && (
+        // No inventory in this town yet, so point buyers to what can be built on now.
+        <section className="section section-rule">
+          <div className="section-heading">
+            <p className="eyebrow">Current homesites nearby</p>
+            <h2>Ready to build now in Wake Forest and Youngsville.</h2>
+          </div>
+          <div className="project-grid two">
+            {projects
+              .filter((p) => p.category === "presale" && p.published !== false)
+              .map((homesite) => (
+                <ProjectCard key={homesite.slug} project={homesite} />
+              ))}
+          </div>
+        </section>
+      )}
       {localHomesites.length > 0 && (
         <section className="section section-rule">
           <div className="section-heading">

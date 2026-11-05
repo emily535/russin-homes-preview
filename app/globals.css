@@ -369,6 +369,15 @@ button {
   max-width: 720px;
   margin-bottom: 42px;
 }
+.section-heading.home-presale-heading {
+  margin-top: 72px;
+}
+.section-heading.home-presale-heading h3 {
+  font-family: Georgia, serif;
+  font-weight: normal;
+  font-size: clamp(26px, 2.6vw, 36px);
+  line-height: 1.15;
+}
 .section-heading.split {
   max-width: none;
   display: grid;
@@ -1131,8 +1140,11 @@ fieldset.field {
   max-width: var(--max);
   margin: auto;
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  gap: 70px;
+  grid-template-columns: 1.6fr 1fr 1.25fr 1fr;
+  gap: 56px;
+}
+.footer-main h2.footer-subhead {
+  margin-top: 18px;
 }
 .footer-main > div {
   display: flex;
@@ -1895,7 +1907,7 @@ fieldset.field {
     grid-template-rows: 240px 240px;
   }
   .footer-main {
-    grid-template-columns: 1.5fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 35px;
   }
 }
