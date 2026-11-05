@@ -54,6 +54,12 @@ export function Footer() {
       <div className="footer-bottom">
         <span>© 2026 {site.legalName}</span>
         <span>Youngsville, North Carolina</span>
+        <span>
+          Website by{" "}
+          <a className="footer-credit" href="https://oakandalgorithm.com" target="_blank" rel="noopener">
+            Oak &amp; Algorithm
+          </a>
+        </span>
       </div>
     </footer>
   );

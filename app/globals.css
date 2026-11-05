@@ -1181,6 +1181,14 @@ fieldset.field {
   font-size: 11px;
   color: color-mix(in srgb, var(--ink) 57%, var(--paper));
 }
+.footer-credit {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.footer-credit:hover {
+  color: color-mix(in srgb, var(--gold) 68%, var(--paper));
+}
 @keyframes rise {
   from {
     opacity: 0;
