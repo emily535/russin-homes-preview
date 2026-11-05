@@ -10,6 +10,18 @@ const nextConfig: NextConfig = {
         destination: "/opportunities",
         permanent: true,
       },
+      // Old Wix URLs Google still has on file. Both earned clicks before the
+      // rebuild, so send that traffic to the closest live page instead of a 404.
+      {
+        source: "/book-online",
+        destination: "/contact",
+        permanent: true,
+      },
+      {
+        source: "/home-information-and-amenities",
+        destination: "/opportunities",
+        permanent: true,
+      },
     ];
   },
 };
