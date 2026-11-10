@@ -1,4 +1,4 @@
-export type OpportunityStatus = "move-in" | "coming-soon" | "presale" | "sold";
+export type OpportunityStatus = "move-in" | "under-contract" | "coming-soon" | "presale" | "sold";
 export type Award = {
   year: number;
   kind: "entry" | "award";
@@ -18,7 +18,13 @@ export type Project = {
   city?: string;
   community: string;
   lot: string;
-  status: "Move-In Ready" | "Coming Soon" | "Pre-Sale Opportunity" | "Sold" | "Completed";
+  status:
+    | "Move-In Ready"
+    | "Under Contract"
+    | "Coming Soon"
+    | "Pre-Sale Opportunity"
+    | "Sold"
+    | "Completed";
   statusKey?: OpportunityStatus;
   category: "available" | "completed" | "presale";
   price?: string;
@@ -266,8 +272,8 @@ export const projects: Project[] = [
     city: "Youngsville, NC 27596",
     community: "East Woods of Patterson",
     lot: "Lot 85",
-    status: "Move-In Ready",
-    statusKey: "move-in",
+    status: "Under Contract",
+    statusKey: "under-contract",
     category: "available",
     priceLabel: "Offered at",
     price: "$1,000,000",
@@ -277,7 +283,7 @@ export const projects: Project[] = [
     acreage: "0.80 acre, pond lot",
     garage: "2-car",
     tags: ["Community pool"],
-    intro: "A move-in ready Russin Homes residence with tranquil pond views.",
+    intro: "A Russin Homes residence with tranquil pond views, now under contract.",
     description: red205,
     highlights: hi([
       ["Flexible Layout", "Designed for flexibility and everyday living."],
@@ -815,7 +821,7 @@ export const locations = {
     title: "Custom homes shaped for life in Youngsville.",
     copy: "Russin Homes builds in established communities and on selected homesites across Youngsville.",
     detail:
-      "Current Youngsville work includes three available homes, two Hidden Lake presale opportunities, and completed residences that show the range of our work.",
+      "Current Youngsville work includes two move-in ready homes, one home under contract, two Hidden Lake presale opportunities, and completed residences that show the range of our work.",
     body: [],
     image: projects[7].heroImage!,
   },

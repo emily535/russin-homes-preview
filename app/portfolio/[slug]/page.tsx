@@ -59,7 +59,12 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
     p.acreage && ["Lot size", p.acreage],
   ].filter(Boolean) as string[][];
   const showInquiry = p.category !== "completed";
-  const showTour = PRIVATE_TOURS_ENABLED && p.category !== "completed";
+  // No tour requests for a home that is under contract or sold.
+  const showTour =
+    PRIVATE_TOURS_ENABLED &&
+    p.category !== "completed" &&
+    p.statusKey !== "under-contract" &&
+    p.statusKey !== "sold";
   return (
     <main>
       <section className={`project-detail-hero ${!p.heroImage ? "missing-media" : ""}`}>

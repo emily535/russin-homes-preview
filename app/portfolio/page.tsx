@@ -36,7 +36,7 @@ export default function PortfolioPage() {
             2024.
           </p>
           <p>
-            Looking for a home you can move into now? Three are{" "}
+            Looking for a home you can move into now? Two are{" "}
             <Link className="inline-link" href="/opportunities">
               move-in ready in Youngsville
             </Link>

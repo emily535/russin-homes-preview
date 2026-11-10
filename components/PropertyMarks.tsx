@@ -11,7 +11,11 @@ export function PropertyMarks({ project }: { project: Project }) {
   const entry = project.awards?.find((a) => a.kind === "entry" && a.year !== award?.year);
   return (
     <div className="property-marks">
-      {project.status !== "Completed" && <span className="status-banner">{project.status}</span>}
+      {project.status !== "Completed" && (
+        <span className="status-banner" data-status={project.statusKey}>
+          {project.status}
+        </span>
+      )}
       {entry && <AwardShield year={entry.year} label="PARADE HOME" />}
       {/* The shield holds the top corner, so a home with both moves its medal to the bottom. */}
       {award?.level && (

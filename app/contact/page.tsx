@@ -28,7 +28,7 @@ export default function ContactPage() {
             already own land, your timeline, and the best way to reach you.
           </p>
           <p>
-            Want to see a finished home first? Three move-in ready Russin Homes in Youngsville
+            Want to see a finished home first? Two move-in ready Russin Homes in Youngsville
             {PRIVATE_TOURS_ENABLED ? (
               <>
                 {" "}

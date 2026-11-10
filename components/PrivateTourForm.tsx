@@ -37,6 +37,10 @@ export function PrivateTourForm({ property }: { property: string }) {
       requestAnimationFrame(() => form.querySelector<HTMLElement>("[aria-invalid=true]")?.focus());
       return;
     }
+    // Sets the subject line of the lead email Jeremy receives.
+    const tourName = String(data.get("name") || "").trim();
+    const tourHome = String(data.get("interest") || "").trim();
+    data.set("subject", `Private tour request from ${tourName}${tourHome ? `: ${tourHome}` : ""}`);
     setLoading(true);
     setStatus("Sending your tour request.");
     try {
