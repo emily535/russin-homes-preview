@@ -1,4 +1,4 @@
-export type OpportunityStatus = "move-in" | "coming-soon" | "presale" | "sold";
+export type OpportunityStatus = "move-in" | "under-contract" | "coming-soon" | "presale" | "sold";
 export type Award = {
   year: number;
   kind: "entry" | "award";
@@ -18,7 +18,13 @@ export type Project = {
   city?: string;
   community: string;
   lot: string;
-  status: "Move-In Ready" | "Coming Soon" | "Pre-Sale Opportunity" | "Sold" | "Completed";
+  status:
+    | "Move-In Ready"
+    | "Under Contract"
+    | "Coming Soon"
+    | "Pre-Sale Opportunity"
+    | "Sold"
+    | "Completed";
   statusKey?: OpportunityStatus;
   category: "available" | "completed" | "presale";
   price?: string;
@@ -266,8 +272,8 @@ export const projects: Project[] = [
     city: "Youngsville, NC 27596",
     community: "East Woods of Patterson",
     lot: "Lot 85",
-    status: "Move-In Ready",
-    statusKey: "move-in",
+    status: "Under Contract",
+    statusKey: "under-contract",
     category: "available",
     priceLabel: "Offered at",
     price: "$1,000,000",
@@ -277,7 +283,7 @@ export const projects: Project[] = [
     acreage: "0.80 acre, pond lot",
     garage: "2-car",
     tags: ["Community pool"],
-    intro: "A move-in ready Russin Homes residence with tranquil pond views.",
+    intro: "A Russin Homes residence with tranquil pond views, now under contract.",
     description: red205,
     highlights: hi([
       ["Flexible Layout", "Designed for flexibility and everyday living."],
@@ -794,6 +800,12 @@ export const testimonials = [
     pullQuote: "What has impressed us even more is the support you've provided after closing.",
     quote: `Looking back on our experience, what stands out most is that we didn't actually set out to find a specific builder. We found a house that we loved, and it just happened to be a Russin home. As we've spent time in the house over the years, we've come to appreciate more and more the quality, craftsmanship, and attention to detail that went into it.\n\nOne thing we really appreciated was how organized and thoughtful you were throughout the process. The binder you put together with surveys, plots, contractor information, and other important details has been an incredibly valuable resource. The extra materials you provided from the original build were another thoughtful touch that demonstrated a level of care we wouldn't have expected but have certainly appreciated.\n\nWhat has impressed us even more is the support you've provided after closing. We've stayed in touch over the years, and you've always been willing to answer questions, offer guidance, and connect us with trusted contractors when we've wanted to tackle additional projects. That ongoing support has meant a lot to us and speaks volumes about the pride you take in your work and your commitment to homeowners.\n\nWe're also proud that our home received a Silver Award during the 2022 Walk of Homes. Since then, we've continued to see many of the homes you've built throughout the neighborhood receive recognition during subsequent Walk of Homes events, which reinforces what we've experienced firsthand: your homes are consistently well-designed, well-built, and highly regarded.\n\nSeveral years later, we remain extremely satisfied with our home and continue to be impressed by its quality. We genuinely enjoy living here and still find ourselves appreciating the details and craftsmanship that make it feel special. We're grateful for the experience we've had and wouldn't hesitate to recommend you to anyone considering a Russin home.`,
   },
+  {
+    attribution: "Vickie Burrus, Vickie Burrus Interiors",
+    pullQuote:
+      "We would highly recommend Russin Homes to anyone looking for a builder who truly takes pride in delivering an exceptional finished product.",
+    quote: `Working with Russin Homes was an absolute pleasure from beginning to end. As a staging and interior styling company, we truly appreciate the opportunity to collaborate with builders who take such pride in their work, and Jeremy of Russin Homes exceeded every expectation. His professionalism, attention to detail, communication, and genuine dedication to creating beautiful homes made our experience exceptional.\n\nWe thoroughly enjoyed the opportunity to stage his Parade of Homes property. The home was an absolute pleasure to work in, and it was evident throughout the process how much thought, care, and craftsmanship went into bringing it to life.\n\nWe are grateful to have had the opportunity to work alongside Jeremy and look forward to many more collaborations, beautiful homes, and future listings together. We would highly recommend Russin Homes to anyone looking for a builder who truly takes pride in delivering an exceptional finished product.`,
+  },
 ] as const satisfies readonly Testimonial[];
 export const HOME_HERO_WORDS = ["Experience", "Personal", "Homebuilding"] as const;
 export const assets = {
@@ -815,7 +827,7 @@ export const locations = {
     title: "Custom homes shaped for life in Youngsville.",
     copy: "Russin Homes builds in established communities and on selected homesites across Youngsville.",
     detail:
-      "Current Youngsville work includes three available homes, two Hidden Lake presale opportunities, and completed residences that show the range of our work.",
+      "Current Youngsville work includes two move-in ready homes, one home under contract, two Hidden Lake presale opportunities, and completed residences that show the range of our work.",
     body: [],
     image: projects[7].heroImage!,
   },

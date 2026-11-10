@@ -30,6 +30,9 @@ export function ContactForm() {
       requestAnimationFrame(() => form.querySelector<HTMLElement>("[aria-invalid=true]")?.focus());
       return;
     }
+    // Sets the subject line of the lead email Jeremy receives.
+    const topic = String(fd.get("interest") || "").trim();
+    fd.set("subject", `New Russin Homes inquiry from ${name}${topic ? `: ${topic}` : ""}`);
     setLoading(true);
     setStatus("Sending your inquiry.");
     try {

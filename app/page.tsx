@@ -54,7 +54,7 @@ export default function HomePage() {
             <h2>Current Opportunities</h2>
           </div>
           <p>
-            Three move-in ready homes in Youngsville, plus presale homesites in Youngsville and Wake
+            Two move-in ready homes in Youngsville, plus presale homesites in Youngsville and Wake
             Forest.
           </p>
         </div>

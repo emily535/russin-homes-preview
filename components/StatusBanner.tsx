@@ -1,5 +1,6 @@
 export const propertyStatuses = [
   "Move-In Ready",
+  "Under Contract",
   "Coming Soon",
   "Pre-Sale Opportunity",
   "Sold",
