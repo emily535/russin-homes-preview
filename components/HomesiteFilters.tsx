@@ -8,7 +8,7 @@ const allFilters = [
   { key: "move-in", label: "Move-In Ready" },
   { key: "under-contract", label: "Under Contract" },
   { key: "presale", label: "Presale Opportunities" },
-  { key: "sold", label: "Sold" },
+  { key: "sold", label: "Closed" },
 ] as const;
 const filters = allFilters.filter(
   (f) => f.key === "all" || opportunities.some((p) => p.statusKey === f.key),

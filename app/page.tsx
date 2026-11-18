@@ -8,7 +8,7 @@ import { HomeHeroVideo } from "@/components/HomeHeroVideo";
 import { ProjectCard } from "@/components/ProjectCard";
 import { Testimonials } from "@/components/Testimonials";
 import { pageMetadata } from "@/data/metadata";
-import { assets, HOME_HERO_WORDS, locations, projects } from "@/data/site";
+import { assets, HOME_HERO_WORDS, isClosed, locations, projects } from "@/data/site";
 
 export const metadata: Metadata = pageMetadata(
   "Russin Homes | Custom Homes in Youngsville, Wake Forest & Raleigh",
@@ -60,7 +60,7 @@ export default function HomePage() {
         </div>
         <div className="project-grid">
           {projects
-            .filter((project) => project.category === "available")
+            .filter((project) => project.category === "available" && !isClosed(project))
             .map((project) => (
               <ProjectCard project={project} key={project.slug} />
             ))}

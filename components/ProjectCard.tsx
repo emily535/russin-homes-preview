@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { projectHref, type Project } from "@/data/site";
+import { isClosed, projectHref, type Project } from "@/data/site";
 import { MediaPlaceholder } from "./MediaPlaceholder";
 import { PropertyMarks } from "./PropertyMarks";
 export function ProjectCard({
@@ -67,7 +67,7 @@ export function ProjectCard({
             </Link>
           </div>
         )}
-        {project.category === "completed" && (
+        {(project.category === "completed" || isClosed(project)) && (
           <Link className="text-link" href={href}>
             View project
           </Link>

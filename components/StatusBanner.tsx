@@ -4,6 +4,7 @@ export const propertyStatuses = [
   "Coming Soon",
   "Pre-Sale Opportunity",
   "Sold",
+  "Closed",
 ] as const;
 
 export type PropertyStatus = (typeof propertyStatuses)[number];
