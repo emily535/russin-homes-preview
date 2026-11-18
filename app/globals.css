@@ -106,7 +106,7 @@ button {
 .primary-nav {
   display: flex;
   align-items: center;
-  gap: 26px;
+  gap: clamp(16px, 1.8vw, 26px);
   font-size: 13px;
 }
 .primary-nav > a,
@@ -116,6 +116,22 @@ button {
   padding: 12px 0;
   color: inherit;
   cursor: pointer;
+  white-space: nowrap;
+}
+/* Narrow desktop: tighten the header so every link and the Call Jeremy box stay on one line. */
+@media (min-width: 901px) and (max-width: 1120px) {
+  .site-header .wordmark img {
+    width: 150px;
+    height: auto;
+  }
+  .primary-nav {
+    gap: 12px;
+    font-size: 12px;
+  }
+  .site-header .persistent-call {
+    padding: 10px 16px;
+    margin-left: 18px;
+  }
 }
 .primary-nav > a:hover,
 .nav-group > button:hover {
@@ -1226,13 +1242,17 @@ fieldset.field {
 /* Revision round: unified property, testimonial, and Parade presentation */
 .persistent-call {
   border: 1px solid var(--gold);
-  padding: 10px 15px;
+  padding: 10px 22px;
   font-size: 12px;
   font-weight: 700;
   min-height: 44px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  /* Keeps "Call Jeremy" on one line in an even box with clear space from the nav. */
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-left: clamp(20px, 2.4vw, 40px);
 }
 .property-marks {
   position: absolute;
@@ -1733,6 +1753,7 @@ fieldset.field {
     background: var(--gold);
     color: var(--ink);
     border: 0;
+    margin-left: 0;
   }
   /* Room under the footer so the fixed Call Jeremy bar never covers its last column. */
   .footer {
