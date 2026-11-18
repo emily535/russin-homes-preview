@@ -24,6 +24,7 @@ export type Project = {
     | "Coming Soon"
     | "Pre-Sale Opportunity"
     | "Sold"
+    | "Closed"
     | "Completed";
   statusKey?: OpportunityStatus;
   category: "available" | "completed" | "presale";
@@ -36,6 +37,8 @@ export type Project = {
   garage?: string;
   tags?: string[];
   completed?: string;
+  // Month a sold home closed, e.g. "November 2026". Shown in place of the price.
+  closed?: string;
   description?: string;
   // Search-result description. Falls back to intro when not set.
   metaDescription?: string;
@@ -260,6 +263,42 @@ const cPrescott = [
   "Bathroom",
   "Front porch",
 ];
+const cPrescottPond = [
+  "Front exterior",
+  "Front exterior and driveway",
+  "Family room with fireplace",
+  "Kitchen and family room",
+  "Kitchen",
+  "Kitchen island",
+  "Gas range and hood",
+  "Breakfast area",
+  "Foyer",
+  "Dining room with coffered ceiling",
+  "Primary bath",
+  "Bedroom",
+  "Bathroom",
+  "Laundry room",
+  "Screened porch",
+  "Rear exterior and screened porch",
+];
+const cBlackSwan = [
+  "Front exterior",
+  "Front exterior",
+  "Family room with fireplace",
+  "Kitchen and family room",
+  "Kitchen",
+  "Dining area",
+  "Family room and screened porch",
+  "Study",
+  "Primary bedroom",
+  "Primary bath soaking tub",
+  "Bonus room",
+  "Bonus room bar",
+  "Bonus room",
+  "Bedroom",
+  "Bathroom",
+  "Screened porch",
+];
 const red205 = `Custom built by Russin Homes in a private community with tranquil pond views. Featuring 4 bedrooms, 4 1/2 bathrooms and 3,756 square feet of beautifully designed space. The owner's suite and guest suite are conveniently located on the main level with wide plank hardwoods and designer lighting spanning throughout.\n\nThe gourmet kitchen features a stained center island with barstool seating and linear pendant lighting, modern tile backsplash, custom painted ceiling-height cabinetry, and stainless steel appliances including a built-in gas range. An adjoining walk-in pantry adds tons of additional storage, all opening to the vaulted, sun-filled dining area.\n\nThe owner's suite has a tray ceiling with stained floating beams, a designer chandelier, hardwoods, and 2-panel sliding glass doors to a private covered porch. The luxurious en-suite bath features a stained dual vanity with a quartz top and floating pendant lights, a zero-entry spa-style shower with tile-to-ceiling surround, an oversized transom and bench seat, and a huge walk-in closet.\n\nThe family room offers a backlit tray ceiling, a linear fireplace with tile-to-ceiling surround, flanking painted built-in cabinets with stained shelving, and large glass sliding doors to the huge screened porch. Upstairs features an oversized game room with a built-in wet bar and beverage fridge, an open study with a built-in desk, spacious secondary en-suites, and finished storage areas.`;
 const dove1123 = `Situated on a serene 1 acre lot in the established neighborhood of Silverleaf. This 4 BR, 4.5 BA, 2 car garage home has a walk-in scullery and pantry, custom cabinets throughout, a professional lighting package, and a professionally designed low voltage system including security, surround sound, and speakers located both inside and out.\n\nThis warm, inviting floor plan features a striking stone fireplace in the family room, a gourmet kitchen, and vaulted ceilings with beams throughout the screened porch, family room, and study. The primary bathroom is appointed with sconce lighting, a zero-entry dual-head shower, and a stand-alone soaking tub. This home is "sitting pretty"!`;
 const dove1121 = `For-Evergreen combines stylish design, quality finishes, and comfortable living in this inviting 4-bedroom, 4-bath home. The open-concept floor plan creates a seamless flow for everyday living and entertaining, featuring quartz countertops and a hidden pantry that adds both function and charm to the kitchen.\n\nThe first-floor primary suite offers a private retreat with a soaking tub, spacious walk-in shower, and generous closet space. A dedicated office and study provides a quiet place to work or learn, while the bonus room with a bar is ideal for entertaining family and friends.\n\nEnjoy outdoor living on the screened porch, and appreciate the added value of a sealed crawl space and independent energy testing. With versatile living spaces and a 2-car garage, the attention to detail throughout is stunning!`;
@@ -272,18 +311,20 @@ export const projects: Project[] = [
     city: "Youngsville, NC 27596",
     community: "East Woods of Patterson",
     lot: "Lot 85",
-    status: "Under Contract",
-    statusKey: "under-contract",
+    status: "Closed",
+    statusKey: "sold",
     category: "available",
-    priceLabel: "Offered at",
-    price: "$1,000,000",
+    closed: "November 2026",
     bedrooms: "4",
     bathrooms: "4.5",
     squareFeet: "3,756",
     acreage: "0.80 acre, pond lot",
     garage: "2-car",
     tags: ["Community pool"],
-    intro: "A Russin Homes residence with tranquil pond views, now under contract.",
+    intro:
+      "A Russin Homes residence with tranquil pond views in East Woods of Patterson, closed November 2026.",
+    metaDescription:
+      "205 Red Cardinal Court, a 2025 Parade of Homes Silver and Best Kitchen winner in East Woods of Patterson, Youngsville. 4 beds, 3,756 sq ft. Closed November 2026.",
     description: red205,
     highlights: hi([
       ["Flexible Layout", "Designed for flexibility and everyday living."],
@@ -611,6 +652,41 @@ export const projects: Project[] = [
     videoPlacement: "walkthrough",
   },
   {
+    slug: "303-black-swan-drive",
+    address: "303 Black Swan Drive",
+    city: "Youngsville, NC 27596",
+    community: "East Woods of Patterson",
+    lot: "Lot 77",
+    status: "Completed",
+    category: "completed",
+    completed: "October 2023",
+    bedrooms: "4",
+    bathrooms: "4",
+    squareFeet: "3,515",
+    acreage: "0.51 acre",
+    intro: "A completed Russin Homes residence in East Woods of Patterson, Youngsville.",
+    metaDescription:
+      "303 Black Swan Drive, a completed Russin Homes custom build in East Woods of Patterson, Youngsville. 4 beds, 4 baths, 3,515 sq ft, wood-beamed ceilings.",
+    description:
+      "303 Black Swan Drive was completed in October 2023 in East Woods of Patterson, Youngsville. It has 4 bedrooms, 4 baths, and about 3,515 square feet on 0.51 acre.\n\nOutside, white board-and-batten siding meets standing-seam metal accents, wood porch posts, and stone-faced front steps. Inside, light wide-plank floors run through the main level, and an arched hallway with wainscoting leads back to the family room.\n\nWood beams cross the family room's tray ceiling. The fireplace wall is finished in stone-look tile with a wood mantel, flanked by floating shelves on shiplap and built-in cabinets, and sliding glass doors open to the screened porch. The kitchen pairs white shaker cabinets with a shiplap island, a shiplap range hood, a pot filler, and a stained wood cabinet wall around the double wall ovens.\n\nThe primary bedroom has its own wood beam and a sliding barn door to the bath, where a freestanding tub sits against a shiplap wall. Upstairs, a bonus room has a bar with a beverage fridge, and a study has a vaulted ceiling.",
+    highlights: hi([
+      ["Wood Beams", "Wood beams in the family room and primary bedroom tray ceilings."],
+      ["Fireplace Wall", "Stone-look tile, a wood mantel, and floating shelves on shiplap."],
+      ["Kitchen", "A shiplap island, a shiplap range hood, a pot filler, and double wall ovens."],
+      ["Primary Bath", "A freestanding tub against a shiplap wall."],
+      ["Bonus Room", "An upstairs bonus room with a bar and a beverage fridge."],
+      ["Study", "A study with a vaulted ceiling."],
+      ["Screened Porch", "Sliding glass doors from the family room to the screened porch."],
+      [
+        "Modern Farmhouse Exterior",
+        "Board-and-batten siding, metal roof accents, and wood porch posts.",
+      ],
+    ]),
+    heroImage: `${root}/12-completed-303-black-swan-drive/01-hero.webp`,
+    imageAlt: "303 Black Swan Drive, front exterior",
+    gallery: gallery("12-completed-303-black-swan-drive", "303 Black Swan Drive", cBlackSwan),
+  },
+  {
     slug: "108-red-cardinal-court",
     address: "108 Red Cardinal Court",
     city: "Youngsville, NC 27596",
@@ -649,6 +725,45 @@ export const projects: Project[] = [
     videoPlacement: "walkthrough",
   },
   {
+    slug: "6033-prescott-pond-drive",
+    address: "6033 Prescott Pond Drive",
+    city: "Wake Forest, NC 27587",
+    community: "Prescott",
+    lot: "Lot 15",
+    status: "Completed",
+    category: "completed",
+    completed: "February 2022",
+    bedrooms: "5",
+    bathrooms: "4.5",
+    squareFeet: "3,352",
+    acreage: "0.97 acre, pond view",
+    intro: "A completed Russin Homes residence in Prescott, Wake Forest.",
+    metaDescription:
+      "6033 Prescott Pond Drive, a completed Russin Homes custom build in Prescott, Wake Forest. 5 beds, 4.5 baths, 3,352 sq ft on a 0.97-acre pond view lot.",
+    description:
+      "6033 Prescott Pond Drive was completed in February 2022 in Prescott, Wake Forest. It has 5 bedrooms, 4.5 baths, and about 3,352 square feet on a 0.97-acre pond view lot.\n\nThe front porch has wood columns and brick steps. Inside, the foyer has wainscoting, a tray ceiling, and a sliding barn door, and the dining room has a coffered ceiling. Wide-plank wood floors run through the main level.\n\nThe kitchen is built around a navy island with a stainless farmhouse sink. White shaker cabinets with glass-front uppers run to the ceiling, with subway tile, a gas range under a stainless hood, and double wall ovens. A navy buffet wall with floating wood shelves sits by the breakfast area.\n\nThe family room fireplace is set in a shiplap surround with a wood mantel, built-in cabinets, and floating shelves. The primary bath has a tiled walk-in shower with a bench, a navy double vanity, and herringbone tile floors. Out back, the screened porch has a wood-plank ceiling.",
+    highlights: hi([
+      ["Pond View Lot", "About 0.97 acre with a pond view."],
+      [
+        "Kitchen",
+        "A navy island with a stainless farmhouse sink, glass-front uppers, and double wall ovens.",
+      ],
+      ["Buffet Wall", "Navy cabinetry and floating wood shelves by the breakfast area."],
+      ["Family Room Fireplace", "A shiplap surround, a wood mantel, and built-ins on both sides."],
+      ["Coffered Dining Room", "A coffered ceiling in the dining room."],
+      ["Foyer", "Wainscoting, a tray ceiling, and a sliding barn door."],
+      ["Primary Bath", "A tiled walk-in shower with a bench and a navy double vanity."],
+      ["Screened Porch", "A screened porch with a wood-plank ceiling."],
+    ]),
+    heroImage: `${root}/11-completed-6033-prescott-pond-drive/01-hero.webp`,
+    imageAlt: "6033 Prescott Pond Drive, front exterior",
+    gallery: gallery(
+      "11-completed-6033-prescott-pond-drive",
+      "6033 Prescott Pond Drive",
+      cPrescottPond,
+    ),
+  },
+  {
     slug: "6504-prescott-shore-drive",
     address: "6504 Prescott Shore Drive",
     community: "Prescott",
@@ -680,17 +795,6 @@ export const projects: Project[] = [
     gallery: gallery("05-completed-prescott-lot-18", "6504 Prescott Shore Drive", cPrescott),
   },
   {
-    slug: "303-black-swan-drive",
-    address: "303 Black Swan Drive",
-    community: "East Woods of Patterson",
-    lot: "Lot 77",
-    status: "Completed",
-    category: "completed",
-    intro: "A completed Russin Homes residence in East Woods of Patterson.",
-    gallery: [],
-    published: false,
-  },
-  {
     slug: "east-woods-lot-57",
     community: "East Woods of Patterson",
     lot: "Lot 57",
@@ -714,8 +818,14 @@ export const projectLinkLabel = (p: Project) => {
   const name = p.address || p.planName || p.community;
   return town ? `${name}, ${town}` : name;
 };
+// A sold home stays on Opportunities, marked Closed, and also shows in the portfolio.
+export const isClosed = (p: Project) => p.statusKey === "sold";
+// Homes and homesites a buyer can still act on. Used for menus, forms, and "also available".
+export const currentOpportunities = opportunities.filter(
+  (p) => !isClosed(p) && p.published !== false,
+);
 export const portfolioProjects = projects.filter(
-  (p) => p.category === "completed" && p.published !== false,
+  (p) => (p.category === "completed" || isClosed(p)) && p.published !== false,
 );
 export const publishedProjects = projects.filter((p) => p.published !== false);
 export const parades = [
@@ -820,6 +930,7 @@ export const assets = {
   interiorOne: `${root}/03-completed-203-red-cardinal-court/08-gallery.webp`,
   aboutPortrait: "/images/russin-homes/jeremy-and-patty-russin.jpg",
 } as const;
+const bySlug = (slug: string) => projects.find((p) => p.slug === slug)!;
 export const locations = {
   youngsville: {
     name: "Youngsville",
@@ -827,9 +938,9 @@ export const locations = {
     title: "Custom homes shaped for life in Youngsville.",
     copy: "Russin Homes builds in established communities and on selected homesites across Youngsville.",
     detail:
-      "Current Youngsville work includes two move-in ready homes, one home under contract, two Hidden Lake presale opportunities, and completed residences that show the range of our work.",
+      "Current Youngsville work includes two move-in ready homes, two Hidden Lake presale opportunities, and completed residences in East Woods of Patterson that show the range of our work.",
     body: [],
-    image: projects[7].heroImage!,
+    image: bySlug("203-red-cardinal-court").heroImage!,
   },
   "wake-forest": {
     name: "Wake Forest",
@@ -837,13 +948,13 @@ export const locations = {
     title: "Direct builder involvement in Wake Forest.",
     copy: "Russin Homes brings personal oversight to selected custom builds and presale opportunities around Wake Forest.",
     detail:
-      "Two Thompson Mill presale homesites are currently offered with proposed plans. Prescott Lot 18 is one completed example of our nearby work.",
+      "Two Thompson Mill presale homesites are currently offered with proposed plans. Completed Russin Homes residences in Prescott show our nearby work.",
     body: [
       "Russin Homes has two presale homesites on Thompson Mill Road in Wake Forest, Lot 1 and Lot 2. Each is about 1.1 acres, pool-ready, with no HOA. The Willowbrook at 7613 Thompson Mill Road and The Ashford at 7609 Thompson Mill Road both start from a McMillan Design floor plan, with current plans from $1,300,000, and you are welcome to bring your own plan instead.",
       "The Willowbrook puts the primary suite, a study, and a guest suite on the first floor, with a walk-in pantry and scullery off the kitchen. The Ashford adds a three-car garage with one oversized 12 by 25 foot bay for a boat.",
       'Russin Homes builds in Wake Forest the same way it builds everywhere: Jeremy Russin is directly involved in every home. One Wake Forest homeowner, a retired general contractor, wrote in his review: "Being a retired General contractor myself I could easily recognize the quality of this home."',
     ],
-    image: projects[9].heroImage!,
+    image: bySlug("6504-prescott-shore-drive").heroImage!,
   },
   raleigh: {
     name: "Raleigh",
@@ -857,7 +968,7 @@ export const locations = {
       "Bring the address, your goals, and your timing. Jeremy can talk through whether the site fits, what a custom plan could look like, and how a build would be scheduled. You can start from your own plan or from one of the McMillan Design plans Russin Homes uses on current presales.",
       "Russin Homes is a licensed North Carolina general contractor, License #80218, with Parade of Homes recognition across five separate years.",
     ],
-    image: projects[8].heroImage!,
+    image: bySlug("108-red-cardinal-court").heroImage!,
   },
 } as const;
 export const routes = [

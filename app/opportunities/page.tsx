@@ -8,7 +8,7 @@ import { assets } from "@/data/site";
 import { Breadcrumb } from "@/components/Breadcrumb";
 export const metadata: Metadata = pageMetadata(
   "Homes for Sale & Presale Opportunities | Russin Homes",
-  "Compare two move-in ready homes, one home under contract, and four presale opportunities in Youngsville and Wake Forest.",
+  "Compare two move-in ready Russin Homes and four presale homesites in Youngsville and Wake Forest, plus a recently closed home in East Woods of Patterson.",
   "/opportunities",
 );
 export default function OpportunitiesPage() {

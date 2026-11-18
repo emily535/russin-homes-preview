@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Facebook, Instagram, Youtube } from "lucide-react";
-import { site, opportunities, locations, projectHref, projectLinkLabel } from "@/data/site";
+import { site, currentOpportunities, locations, projectHref, projectLinkLabel } from "@/data/site";
 
 export function Footer() {
   const socialIcons = { Instagram, Facebook, YouTube: Youtube };
@@ -31,13 +31,11 @@ export function Footer() {
         </div>
         <div>
           <h2>Available Homes</h2>
-          {opportunities
-            .filter((p) => p.published !== false)
-            .map((p) => (
-              <Link key={p.slug} href={projectHref(p)}>
-                {projectLinkLabel(p)}
-              </Link>
-            ))}
+          {currentOpportunities.map((p) => (
+            <Link key={p.slug} href={projectHref(p)}>
+              {projectLinkLabel(p)}
+            </Link>
+          ))}
         </div>
         <div>
           <h2>Connect</h2>
@@ -72,7 +70,12 @@ export function Footer() {
         <span>Youngsville, North Carolina</span>
         <span>
           Website by{" "}
-          <a className="footer-credit" href="https://oakandalgorithm.com" target="_blank" rel="noopener">
+          <a
+            className="footer-credit"
+            href="https://oakandalgorithm.com"
+            target="_blank"
+            rel="noopener"
+          >
             Oak &amp; Algorithm
           </a>
         </span>

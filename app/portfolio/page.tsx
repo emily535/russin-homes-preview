@@ -9,7 +9,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = pageMetadata(
   "Custom Home Portfolio | Russin Homes",
-  "Completed Russin Homes custom builds in Youngsville and Prescott, including 2022 Silver and 2024 Bronze Parade of Homes winners in East Woods of Patterson.",
+  "Completed Russin Homes custom builds in Youngsville and Wake Forest, including Parade of Homes winners in East Woods of Patterson and homes in Prescott.",
   "/portfolio",
 );
 export default function PortfolioPage() {
@@ -30,10 +30,11 @@ export default function PortfolioPage() {
           <h2>Featured homes and completed work</h2>
           <p>
             Every home here was built by Russin Homes, with Jeremy Russin directly involved from the
-            first conversation through closing. The completed homes below are in East Woods of
-            Patterson in Youngsville and in Prescott, and two of them won at the Parade of Homes:
-            108 Red Cardinal Court took Silver in 2022, and 203 Red Cardinal Court took Bronze in
-            2024.
+            first conversation through closing. The homes below are in East Woods of Patterson in
+            Youngsville and in Prescott in Wake Forest, and three of them won at the Parade of
+            Homes: 108 Red Cardinal Court took Silver in 2022, 203 Red Cardinal Court took Bronze in
+            2024, and 205 Red Cardinal Court, which closed in November 2026, took Silver and Best
+            Kitchen in 2025.
           </p>
           <p>
             Looking for a home you can move into now? Two are{" "}

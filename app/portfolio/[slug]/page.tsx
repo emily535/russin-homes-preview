@@ -11,7 +11,13 @@ import { PropertyMarks } from "@/components/PropertyMarks";
 import { StructuredData } from "@/components/StructuredData";
 import { pageMetadata } from "@/data/metadata";
 import { ProjectCard } from "@/components/ProjectCard";
-import { PRIVATE_TOURS_ENABLED, opportunities, publishedProjects, site } from "@/data/site";
+import {
+  PRIVATE_TOURS_ENABLED,
+  currentOpportunities,
+  isClosed,
+  publishedProjects,
+  site,
+} from "@/data/site";
 // "Youngsville, NC 27596" -> structured PostalAddress. Without a city, no locality is guessed.
 function residenceAddress(street: string | undefined, city: string | undefined) {
   const match = city?.match(/^([^,]+),\s*([A-Z]{2})\s*(\d{5})?/);
@@ -58,7 +64,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
     p.garage && ["Garage", p.garage],
     p.acreage && ["Lot size", p.acreage],
   ].filter(Boolean) as string[][];
-  const showInquiry = p.category !== "completed";
+  const showInquiry = p.category !== "completed" && !isClosed(p);
   // No tour requests for a home that is under contract or sold.
   const showTour =
     PRIVATE_TOURS_ENABLED &&
@@ -101,7 +107,13 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
       <section className="glance section">
         <div>
           <p className="eyebrow">Home at a glance</p>
-          <h2>{p.completed ? `Completed ${p.completed}` : `${p.priceLabel} ${p.price}`}</h2>
+          <h2>
+            {p.closed
+              ? `Closed ${p.closed}`
+              : p.completed
+                ? `Completed ${p.completed}`
+                : `${p.priceLabel} ${p.price}`}
+          </h2>
           <p>
             {p.address}
             {p.city ? `, ${p.city}` : ""}
@@ -214,8 +226,8 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
         const town = p.city?.split(",")[0];
         const rank = (o: typeof p) =>
           o.community === p.community ? 0 : o.city?.split(",")[0] === town ? 1 : 2;
-        const related = opportunities
-          .filter((o) => o.slug !== p.slug && o.published !== false)
+        const related = currentOpportunities
+          .filter((o) => o.slug !== p.slug)
           .sort((a, b) => rank(a) - rank(b))
           .slice(0, 3);
         return related.length ? (

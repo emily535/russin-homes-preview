@@ -1,6 +1,6 @@
 "use client";
 import { FormEvent, useEffect, useRef, useState } from "react";
-import { opportunities } from "@/data/site";
+import { currentOpportunities } from "@/data/site";
 type Errors = Partial<Record<"name" | "email" | "message", string>>;
 export function ContactForm() {
   const [errors, setErrors] = useState<Errors>({});
@@ -105,7 +105,7 @@ export function ContactForm() {
         <label htmlFor="interest">Property or homesite interest</label>
         <select ref={interest} id="interest" name="interest" defaultValue="">
           <option value="">General inquiry</option>
-          {opportunities.map((p) => (
+          {currentOpportunities.map((p) => (
             <option key={p.slug}>{p.planName || p.address}</option>
           ))}
         </select>
